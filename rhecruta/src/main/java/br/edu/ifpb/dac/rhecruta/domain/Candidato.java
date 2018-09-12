@@ -3,9 +3,13 @@ package br.edu.ifpb.dac.rhecruta.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.AttributeOverride;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Transient;
 
 @Entity
 public class Candidato implements Serializable {
@@ -15,7 +19,7 @@ public class Candidato implements Serializable {
     private String senha;
     private String curriculo;
     private String nome;
-    @Transient
+    @ElementCollection
     private List<Vaga> interesses;
 
     public Candidato() {
@@ -76,9 +80,12 @@ public class Candidato implements Serializable {
 
     @Override
     public String toString() {
-        return "Candidato{" + "email=" + email + ", senha="
-                + senha + ", curriculo=" + curriculo
-                + ", nome=" + nome + ", interesses=" + interesses + '}';
+        return "Candidato{" +
+                "email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                ", curriculo='" + curriculo + '\'' +
+                ", nome='" + nome + '\'' +
+                ", interesses=" + interesses +
+                '}';
     }
-
 }
