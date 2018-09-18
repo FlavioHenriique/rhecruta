@@ -34,12 +34,19 @@ public class CandidatoDAO implements DAO<Candidato> {
 
     @Override
     public void deletar(Candidato c) {
+
+        em.getTransaction().begin();
         em.remove(c);
+        em.getTransaction().commit();
+
     }
 
     @Override
     public Candidato atualizar(Candidato c) {
-        return em.merge(buscar(c));
+        em.getTransaction().begin();
+        em.merge(c);
+        em.getTransaction().commit();
+        return buscar(c);
     }
 
 }
