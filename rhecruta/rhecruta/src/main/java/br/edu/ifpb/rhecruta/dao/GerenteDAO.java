@@ -31,16 +31,23 @@ public class GerenteDAO implements DAO<Gerente> {
     @Override
     public Gerente buscar(Object obj) {
         return em.find(Gerente.class, obj);
+
     }
 
     @Override
     public void deletar(Gerente obj) {
+
+        em.getTransaction().begin();
         em.remove(obj);
+        em.getTransaction().commit();
     }
 
     @Override
     public Gerente atualizar(Gerente obj) {
-        return em.merge(obj);
+        em.getTransaction().begin();
+        em.merge(obj);
+        em.getTransaction().commit();
+        return buscar(obj.getCodigo());
     }
 
 }
