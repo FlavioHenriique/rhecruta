@@ -1,9 +1,17 @@
-/home/flavio/ADS/5º  Período/D.A.C/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/domain/Gerente.java
-/home/flavio/ADS/5º  Período/D.A.C/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/domain/Avaliador.java
-/home/flavio/ADS/5º  Período/D.A.C/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/resource/RestApplication.java
-/home/flavio/ADS/5º  Período/D.A.C/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/domain/Vaga.java
-/home/flavio/ADS/5º  Período/D.A.C/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/dao/DAO.java
-/home/flavio/ADS/5º  Período/D.A.C/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/resource/GerenteResource.java
-/home/flavio/ADS/5º  Período/D.A.C/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/domain/Candidato.java
-/home/flavio/ADS/5º  Período/D.A.C/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/resource/AvaliadorResource.java
-/home/flavio/ADS/5º  Período/D.A.C/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/resource/CandidatoResource.java
+/home/aguirresabino/workspace/projetos/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/dao/DAO.java
+/home/aguirresabino/workspace/projetos/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/dao/GerenteDao.java
+/home/aguirresabino/workspace/projetos/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/dao/interfaces/AvaliadorDaoIF.java
+/home/aguirresabino/workspace/projetos/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/dao/interfaces/generics/IFDaoGeneric.java
+/home/aguirresabino/workspace/projetos/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/resource/RestApplication.java
+/home/aguirresabino/workspace/projetos/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/resource/AvaliadorResource.java
+/home/aguirresabino/workspace/projetos/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/dao/interfaces/GerenteDaoIF.java
+/home/aguirresabino/workspace/projetos/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/dao/AvaliadorDao.java
+/home/aguirresabino/workspace/projetos/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/domain/Candidato.java
+/home/aguirresabino/workspace/projetos/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/domain/Avaliador.java
+/home/aguirresabino/workspace/projetos/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/domain/Gerente.java
+/home/aguirresabino/workspace/projetos/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/resource/GerenteResource.java
+/home/aguirresabino/workspace/projetos/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/dao/interfaces/VagaDaoIF.java
+/home/aguirresabino/workspace/projetos/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/dao/interfaces/CandidatoDaoIF.java
+/home/aguirresabino/workspace/projetos/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/domain/Vaga.java
+/home/aguirresabino/workspace/projetos/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/dao/CandidatoDao.java
+/home/aguirresabino/workspace/projetos/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/resource/CandidatoResource.java

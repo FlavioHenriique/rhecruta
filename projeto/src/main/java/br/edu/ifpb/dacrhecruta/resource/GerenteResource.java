@@ -1,6 +1,7 @@
 package br.edu.ifpb.dacrhecruta.resource;
 
 import br.edu.ifpb.dacrhecruta.dao.DAO;
+import br.edu.ifpb.dacrhecruta.dao.GerenteDao;
 import br.edu.ifpb.dacrhecruta.domain.Gerente;
 import com.google.gson.Gson;
 
@@ -15,8 +16,8 @@ import javax.ws.rs.core.Response;
 public class GerenteResource {
 
     @Inject
-    //private GerenteDAO dao;
-    private DAO dao;
+    private GerenteDao dao;
+    //private DAO dao;
     private Gson gson = new Gson();
 
     @POST
@@ -32,7 +33,12 @@ public class GerenteResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response buscarGerente(@PathParam("codigo") int codigo) {
         //Gerente c = dao.buscar(codigo);
-        Gerente c = (Gerente) dao.buscar(codigo,Gerente.class);
+        //Gerente c = (Gerente) dao.buscar(codigo,Gerente.class);
+        
+        Gerente c = new Gerente();
+        c.setCodigo(codigo);
+        c = dao.buscar(c);
+        
         if(c != null){
             return Response.ok().entity(c).build();
         }else{
@@ -49,15 +55,19 @@ public class GerenteResource {
         Gerente g = gson.fromJson(json, Gerente.class);
         return Response
                 .ok()
-                .entity(dao.atualizar(g, g.getCodigo()))
+                .entity(dao.atualizar(g))
                 .build();
     }
 
     @DELETE
     @Path("/{codigo}")
     public Response deletar(@PathParam("codigo") int codigo) {
+        
+        Gerente c = new Gerente();
+        c.setCodigo(codigo);
+        c = dao.buscar(c);
 
-        dao.deletar(dao.buscar(codigo,Gerente.class));
+        dao.deletar(dao.buscar(c));
         return Response.ok().build();
     }
 }

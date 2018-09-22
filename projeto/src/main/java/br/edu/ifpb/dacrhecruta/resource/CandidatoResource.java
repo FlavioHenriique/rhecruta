@@ -1,5 +1,6 @@
 package br.edu.ifpb.dacrhecruta.resource;
 
+import br.edu.ifpb.dacrhecruta.dao.CandidatoDao;
 import br.edu.ifpb.dacrhecruta.dao.DAO;
 import br.edu.ifpb.dacrhecruta.domain.Candidato;
 import com.google.gson.Gson;
@@ -21,8 +22,8 @@ import javax.ws.rs.core.Response;
 public class CandidatoResource {
 
     @Inject
-    //private CandidatoDAO dao;
-    private DAO dao;
+    private CandidatoDao dao;
+    //private DAO dao;
     private Gson gson = new Gson();
 
     @POST
@@ -30,6 +31,7 @@ public class CandidatoResource {
     public Response salvar(String json) {
 
         dao.salvar(gson.fromJson(json, Candidato.class));
+        
         return Response.ok().build();
     }
 
@@ -37,8 +39,14 @@ public class CandidatoResource {
     @Path("/{email}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response buscarCandidato(@PathParam("email") String email) {
-        Candidato c = (Candidato) dao.buscar(email,Candidato.class);
+        //Candidato c = (Candidato) dao.buscar(email,Candidato.class);
+        
+        Candidato c = new Candidato();
+        c.setEmail(email);
+        c = dao.buscar(c);
+        
         System.out.println(c.toString());
+        
         return Response.ok().entity(c).build();
     }
 
@@ -48,17 +56,22 @@ public class CandidatoResource {
     public Response atualizar(String json) {
 
         Candidato c = gson.fromJson(json, Candidato.class);
+        
         return Response
                 .ok()
-                .entity(dao.atualizar(c,c.getEmail()))
+                .entity(dao.atualizar(c))
                 .build();
     }
 
     @DELETE
     @Path("/{email}")
     public Response deletar(@PathParam("email") String email) {
+        
+        Candidato c = new Candidato();
+        c.setEmail(email);
+        c = dao.buscar(c);
 
-        dao.deletar(dao.buscar(email,Candidato.class));
+        dao.deletar(dao.buscar(c));
         return Response.ok().build();
     }
 }
