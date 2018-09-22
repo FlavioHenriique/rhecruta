@@ -1,6 +1,7 @@
 package br.edu.ifpb.dacrhecruta.resource;
 
 import br.edu.ifpb.dacrhecruta.dao.AvaliadorDAO;
+import br.edu.ifpb.dacrhecruta.dao.DAO;
 import br.edu.ifpb.dacrhecruta.domain.Avaliador;
 import com.google.gson.Gson;
 
@@ -15,7 +16,8 @@ import javax.ws.rs.core.Response;
 public class AvaliadorResource {
     
     @Inject
-    private AvaliadorDAO dao;
+    //private AvaliadorDAO dao;
+    private DAO dao;
     private Gson gson = new Gson();
 
     @POST
@@ -30,7 +32,8 @@ public class AvaliadorResource {
     @Path("/{codigo}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response buscarAvaliador(@PathParam("codigo") int codigo) {
-        Avaliador a = dao.buscar(codigo);
+        Avaliador a = (Avaliador) dao.buscar(codigo,Avaliador.class);
+
         if(a != null){
             return Response.ok().entity(a).build();
         }
@@ -43,10 +46,10 @@ public class AvaliadorResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response atualizar(String json) {
-
+        Avaliador a = gson.fromJson(json, Avaliador.class);
         return Response
                 .ok()
-                .entity(dao.atualizar(gson.fromJson(json, Avaliador.class)))
+                .entity(dao.atualizar(a,a.getCodigo()))
                 .build();
     }
 
@@ -54,7 +57,7 @@ public class AvaliadorResource {
     @Path("/{codigo}")
     public Response deletar(@PathParam("codigo") int codigo) {
 
-        dao.deletar(dao.buscar(codigo));
+        dao.deletar(dao.buscar(codigo,Avaliador.class));
         return Response.ok().build();
     }
 }

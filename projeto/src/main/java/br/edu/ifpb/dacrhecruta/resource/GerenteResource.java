@@ -1,18 +1,12 @@
 package br.edu.ifpb.dacrhecruta.resource;
 
-import br.edu.ifpb.dacrhecruta.dao.GerenteDAO;
+import br.edu.ifpb.dacrhecruta.dao.DAO;
 import br.edu.ifpb.dacrhecruta.domain.Gerente;
 import com.google.gson.Gson;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -21,7 +15,8 @@ import javax.ws.rs.core.Response;
 public class GerenteResource {
 
     @Inject
-    private GerenteDAO dao;
+    //private GerenteDAO dao;
+    private DAO dao;
     private Gson gson = new Gson();
 
     @POST
@@ -36,9 +31,14 @@ public class GerenteResource {
     @Path("/{codigo}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response buscarGerente(@PathParam("codigo") int codigo) {
-        Gerente c = dao.buscar(codigo);
-        System.out.println(c.toString());
-        return Response.ok().entity(c).build();
+        //Gerente c = dao.buscar(codigo);
+        Gerente c = (Gerente) dao.buscar(codigo,Gerente.class);
+        if(c != null){
+            return Response.ok().entity(c).build();
+        }else{
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
     }
 
     @PUT
@@ -46,13 +46,10 @@ public class GerenteResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response atualizar(String json) {
 
+        Gerente g = gson.fromJson(json, Gerente.class);
         return Response
                 .ok()
-                .entity(
-                        dao.atualizar(
-                                gson.fromJson(json, Gerente.class)
-                        )
-                )
+                .entity(dao.atualizar(g, g.getCodigo()))
                 .build();
     }
 
@@ -60,7 +57,7 @@ public class GerenteResource {
     @Path("/{codigo}")
     public Response deletar(@PathParam("codigo") int codigo) {
 
-        dao.deletar(dao.buscar(codigo));
+        dao.deletar(dao.buscar(codigo,Gerente.class));
         return Response.ok().build();
     }
 }

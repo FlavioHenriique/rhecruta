@@ -1,12 +1,33 @@
 package br.edu.ifpb.dacrhecruta.dao;
 
-public interface DAO<T> {
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-    public void salvar(T obj);
+@Stateless
+public class DAO {
 
-    public T buscar(Object obj);
+    @PersistenceContext
+    private EntityManager em;
 
-    public void deletar(T obj);
+    public void salvar(Object Object) {
 
-    public T atualizar(T obj);
+        em.persist(Object);
+    }
+
+    public Object buscar(Object key, Class classe) {
+        return em.find(classe,key);
+    }
+
+    public void deletar(Object Object) {
+
+        em.remove(Object);
+
+    }
+
+    public Object atualizar(Object obj, Object key) {
+
+        em.merge(obj);
+        return buscar(key, obj.getClass());
+    }
 }

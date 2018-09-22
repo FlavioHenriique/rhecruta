@@ -18,7 +18,6 @@ public class GerenteDAO {
 
     public Gerente buscar(int codigo) {
         return em.find(Gerente.class, codigo);
-
     }
 
     public void deletar(Gerente gerente) {
