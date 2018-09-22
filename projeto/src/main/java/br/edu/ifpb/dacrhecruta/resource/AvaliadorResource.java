@@ -1,6 +1,5 @@
 package br.edu.ifpb.dacrhecruta.resource;
 
-import br.edu.ifpb.dacrhecruta.dao.AvaliadorDAO;
 import br.edu.ifpb.dacrhecruta.dao.DAO;
 import br.edu.ifpb.dacrhecruta.domain.Avaliador;
 import com.google.gson.Gson;

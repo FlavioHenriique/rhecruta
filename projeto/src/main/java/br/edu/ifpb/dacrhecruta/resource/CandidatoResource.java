@@ -1,6 +1,5 @@
 package br.edu.ifpb.dacrhecruta.resource;
 
-import br.edu.ifpb.dacrhecruta.dao.CandidatoDAO;
 import br.edu.ifpb.dacrhecruta.dao.DAO;
 import br.edu.ifpb.dacrhecruta.domain.Candidato;
 import com.google.gson.Gson;
