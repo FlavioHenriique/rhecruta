@@ -1,10 +1,9 @@
-package br.edu.ifpb.dacrhecruta.dao.interfaces;
+package br.edu.ifpb.dacrhecruta.dao.interfaces.generics;
 
 import java.util.List;
 
 /**
- *
- * @author aguirresabino
+ * Esta interface genérica define as operações semelhantes atribuídas aos objetos
  */
 public interface IFDaoGeneric<T> {
     public void salvar(T obj);

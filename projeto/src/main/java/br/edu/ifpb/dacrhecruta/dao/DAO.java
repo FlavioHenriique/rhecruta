@@ -10,11 +10,11 @@ public class DAO {
     @PersistenceContext
     private EntityManager em;
 
-    public void salvar(Object Object) {
+    public void salvar(Object obj) {
 
-        em.persist(Object);
+        em.persist(obj);
     }
-
+    
     public Object buscar(Object key, Class classe) {
         return em.find(classe,key);
     }
@@ -30,4 +30,5 @@ public class DAO {
         em.merge(obj);
         return buscar(key, obj.getClass());
     }
+
 }
