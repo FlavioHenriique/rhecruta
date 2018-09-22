@@ -18,8 +18,6 @@ public class Candidato implements Serializable {
     private String curriculo;
     private String nome;
     @ElementCollection
-    //@CollectionTable(name = "Interesses", joinColumns = @JoinColumn(name = "idVaga"))
-    @AttributeOverride(name = "id", column = @Column(name = "idvaga"))
     private List<Vaga> interesses;
 
     public Candidato() {
@@ -66,26 +64,19 @@ public class Candidato implements Serializable {
         this.nome = nome;
     }
 
-    public List<Vaga> getInteresses() {
-        return interesses;
-    }
 
-    public void setInteresses(List<Vaga> interesses) {
-        this.interesses = interesses;
-    }
-
-    public void adicionarInteresse(Vaga vaga) {
-        this.interesses.add(vaga);
+    public void adicionarInteresse(Vaga v) {
+        interesses.add(v);
     }
 
     @Override
     public String toString() {
-        return "Candidato{"
-                + "email='" + email + '\''
-                + ", senha='" + senha + '\''
-                + ", curriculo='" + curriculo + '\''
-                + ", nome='" + nome + '\''
-                + ", interesses=" + interesses
-                + '}';
+        return "Candidato{" +
+                "email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                ", curriculo='" + curriculo + '\'' +
+                ", nome='" + nome + '\'' +
+                ", interesses=" + interesses +
+                '}';
     }
 }

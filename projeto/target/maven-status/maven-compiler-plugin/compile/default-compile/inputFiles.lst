@@ -2,11 +2,8 @@
 /home/flavio/ADS/5º  Período/D.A.C/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/domain/Avaliador.java
 /home/flavio/ADS/5º  Período/D.A.C/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/resource/RestApplication.java
 /home/flavio/ADS/5º  Período/D.A.C/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/domain/Vaga.java
-/home/flavio/ADS/5º  Período/D.A.C/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/dao/CandidatoDAO.java
 /home/flavio/ADS/5º  Período/D.A.C/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/dao/DAO.java
 /home/flavio/ADS/5º  Período/D.A.C/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/resource/GerenteResource.java
-/home/flavio/ADS/5º  Período/D.A.C/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/dao/GerenteDAO.java
 /home/flavio/ADS/5º  Período/D.A.C/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/domain/Candidato.java
 /home/flavio/ADS/5º  Período/D.A.C/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/resource/AvaliadorResource.java
-/home/flavio/ADS/5º  Período/D.A.C/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/dao/AvaliadorDAO.java
 /home/flavio/ADS/5º  Período/D.A.C/rhecruta/projeto/src/main/java/br/edu/ifpb/dacrhecruta/resource/CandidatoResource.java
