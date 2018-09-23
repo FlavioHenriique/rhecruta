@@ -2,7 +2,6 @@ package br.edu.ifpb.dacrhecruta.resource;
 
 import br.edu.ifpb.dacrhecruta.dao.CandidatoDao;
 import br.edu.ifpb.dacrhecruta.dao.DAO;
-import br.edu.ifpb.dacrhecruta.dao.interfaces.CandidatoDaoIF;
 import br.edu.ifpb.dacrhecruta.domain.Candidato;
 import com.google.gson.Gson;
 import javax.ejb.Stateless;
@@ -23,7 +22,7 @@ import javax.ws.rs.core.Response;
 public class CandidatoResource {
 
     @Inject
-    private CandidatoDaoIF dao;
+    private CandidatoDao dao;
     //private DAO dao;
     private Gson gson = new Gson();
 

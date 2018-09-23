@@ -1,6 +1,6 @@
 package br.edu.ifpb.dacrhecruta.resource;
 
-import br.edu.ifpb.dacrhecruta.dao.interfaces.AvaliadorDaoIF;
+import br.edu.ifpb.dacrhecruta.dao.AvaliadorDao;
 import br.edu.ifpb.dacrhecruta.domain.Avaliador;
 import com.google.gson.Gson;
 
@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 public class AvaliadorResource {
     
     @Inject
-    private AvaliadorDaoIF dao;
+    private AvaliadorDao dao;
     //private DAO dao;
     private Gson gson = new Gson();
 

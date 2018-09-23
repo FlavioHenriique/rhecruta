@@ -1,6 +1,7 @@
 package br.edu.ifpb.dacrhecruta.resource;
 
-import br.edu.ifpb.dacrhecruta.dao.interfaces.GerenteDaoIF;
+import br.edu.ifpb.dacrhecruta.dao.DAO;
+import br.edu.ifpb.dacrhecruta.dao.GerenteDao;
 import br.edu.ifpb.dacrhecruta.domain.Gerente;
 import com.google.gson.Gson;
 
@@ -15,7 +16,7 @@ import javax.ws.rs.core.Response;
 public class GerenteResource {
 
     @Inject
-    private GerenteDaoIF dao;
+    private GerenteDao dao;
     //private DAO dao;
     private Gson gson = new Gson();
 
