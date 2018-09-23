@@ -19,3 +19,4 @@ br/edu/ifpb/dacrhecruta/dao/interfaces/GerenteDaoIF.class
 br/edu/ifpb/dacrhecruta/resource/RestApplication.class
 br/edu/ifpb/dacrhecruta/dao/interfaces/AvaliadorDaoIF.class
 br/edu/ifpb/dacrhecruta/resource/GerenteResource.class
+br/edu/ifpb/dacrhecruta/dao/GerenteDaoProduces.class
