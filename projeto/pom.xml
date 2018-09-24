@@ -43,7 +43,13 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
-        
+
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20180813</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
