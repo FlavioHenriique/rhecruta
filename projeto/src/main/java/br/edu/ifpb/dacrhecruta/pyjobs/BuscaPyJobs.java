@@ -35,7 +35,7 @@ public class BuscaPyJobs {
         client = new OkHttpClient();
     }
 
-    public List<Vaga> buscaVagas() {
+    private List<Vaga> buscaVagas() {
         Request request = new Request.Builder().url(url).get().build();
 
         try {
@@ -55,7 +55,7 @@ public class BuscaPyJobs {
         return gson.toJson(
                 buscaVagas()
                 .stream()
-                .filter(v->v.getWorkplace().equalsIgnoreCase(cidade))
+                .filter(v->v.getWorkplace().toLowerCase().contains(cidade))
                 .collect(Collectors.toList())
         );
     }
@@ -65,6 +65,15 @@ public class BuscaPyJobs {
                 buscaVagas()
                 .stream()
                 .filter(v->v.getDescription().toLowerCase().contains(descricao))
+                .collect(Collectors.toList())
+        );
+    }
+
+    public String buscaEmpresa(String empresa){
+        return gson.toJson(
+                buscaVagas()
+                .stream()
+                .filter(v->v.getCompany_name().toLowerCase().contains(empresa))
                 .collect(Collectors.toList())
         );
     }
