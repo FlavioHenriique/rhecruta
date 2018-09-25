@@ -24,6 +24,19 @@ public class VagaResource {
     @Path("cidade/{cidade}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response buscaCidade(@PathParam("cidade") String cidade){
-        return Response.ok().entity(busca.buscaCidade(cidade)).build();
+        return Response
+                .ok()
+                .entity(busca.buscaCidade(cidade))
+                .build();
+    }
+
+    @GET
+    @Path("descricao/{descricao}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response buscaDescricao(@PathParam("descricao") String descricao){
+        return Response
+                .ok()
+                .entity(busca.buscaDescricao(descricao.toLowerCase()))
+                .build();
     }
 }

@@ -55,7 +55,16 @@ public class BuscaPyJobs {
         return gson.toJson(
                 buscaVagas()
                 .stream()
-                .filter(v->v.getWorkplace().equals(cidade))
+                .filter(v->v.getWorkplace().equalsIgnoreCase(cidade))
+                .collect(Collectors.toList())
+        );
+    }
+
+    public String buscaDescricao(String descricao){
+        return gson.toJson(
+                buscaVagas()
+                .stream()
+                .filter(v->v.getDescription().toLowerCase().contains(descricao))
                 .collect(Collectors.toList())
         );
     }
