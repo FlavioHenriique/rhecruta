@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -20,8 +21,9 @@ public class VagaResource {
     private Gson gson = new Gson();
 
     @GET
+    @Path("cidade/{cidade}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response teste(){
-        return Response.ok().entity(gson.toJson(busca.okhttp())).build();
+    public Response buscaCidade(@PathParam("cidade") String cidade){
+        return Response.ok().entity(busca.buscaCidade(cidade)).build();
     }
 }
