@@ -26,7 +26,7 @@ import okhttp3.Request;
 @Stateless
 public class BuscaPyJobs {
 
-    private final static String url = "http://www.pyjobs.com.br/api/jobs/";
+    private final static String url = "http://www.pyjobs.com.br/api/jobs/?limit=80";
     private OkHttpClient client;
     private Gson gson;
 
@@ -39,6 +39,7 @@ public class BuscaPyJobs {
         Request request = new Request.Builder().url(url).get().build();
 
         try {
+
             Response response = client.newCall(request).execute();
             JSONObject json = new JSONObject(response.body().string());
             JSONArray j = json.getJSONArray("objects");
