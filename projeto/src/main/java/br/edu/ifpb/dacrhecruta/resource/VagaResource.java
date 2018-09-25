@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response;
 
 @Path("vaga")
 @Stateless
+@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 public class VagaResource {
 
     @Inject
@@ -22,7 +23,6 @@ public class VagaResource {
 
     @GET
     @Path("cidade/{cidade}")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response buscaCidade(@PathParam("cidade") String cidade){
         return Response
                 .ok()
@@ -32,7 +32,6 @@ public class VagaResource {
 
     @GET
     @Path("descricao/{descricao}")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response buscaDescricao(@PathParam("descricao") String descricao){
         return Response
                 .ok()
