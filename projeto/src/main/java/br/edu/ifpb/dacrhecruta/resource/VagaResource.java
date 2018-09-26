@@ -2,7 +2,6 @@ package br.edu.ifpb.dacrhecruta.resource;
 
 import br.edu.ifpb.dacrhecruta.pyjobs.BuscaPyJobs;
 import com.google.gson.Gson;
-
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
