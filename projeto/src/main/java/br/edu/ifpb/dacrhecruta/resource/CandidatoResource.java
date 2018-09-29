@@ -3,6 +3,8 @@ package br.edu.ifpb.dacrhecruta.resource;
 import br.edu.ifpb.dacrhecruta.dao.interfaces.CandidatoDaoIF;
 import br.edu.ifpb.dacrhecruta.domain.Candidato;
 import com.google.gson.Gson;
+import org.json.JSONObject;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -27,6 +29,21 @@ public class CandidatoResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/login")
+    public Response autenticar(String json){
+        JSONObject jobj = new JSONObject(json);
+        Candidato c = dao.autenticar(jobj.getString("email"),
+                jobj.getString("senha"));
+
+        if(c  != null){
+            return Response.ok().entity(c).build();
+        }else{
+            return Response.noContent().build();
+        }
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response salvar(String json) {
 
         dao.salvar(gson.fromJson(json, Candidato.class));
@@ -45,8 +62,11 @@ public class CandidatoResource {
         c = dao.buscar(c);
         
         System.out.println(c.toString());
-        
-        return Response.ok().entity(c).build();
+        if(c != null){
+            return Response.ok().entity(c).build();
+        }else{
+            return Response.noContent().build();
+        }
     }
 
     @PUT

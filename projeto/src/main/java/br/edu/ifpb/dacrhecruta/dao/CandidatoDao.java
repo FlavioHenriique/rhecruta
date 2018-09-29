@@ -7,13 +7,13 @@ package br.edu.ifpb.dacrhecruta.dao;
 
 import br.edu.ifpb.dacrhecruta.dao.interfaces.CandidatoDaoIF;
 import br.edu.ifpb.dacrhecruta.domain.Candidato;
+
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- *
  * @author aguirresabino
  */
 @Stateless
@@ -29,7 +29,7 @@ public class CandidatoDao implements CandidatoDaoIF {
 
     @Override
     public List<Candidato> buscar() {
-        List<Candidato> candidatos = em.createQuery("SELECT c FROM Candidato").getResultList();
+        List<Candidato> candidatos = em.createQuery("SELECT c FROM Candidato c").getResultList();
         return candidatos;
     }
 
@@ -48,5 +48,16 @@ public class CandidatoDao implements CandidatoDaoIF {
         em.merge(obj);
         return this.buscar(obj);
     }
-
+    @Override
+    public Candidato autenticar(String email, String senha) {
+        System.out.println(email + " " + senha);
+        Candidato c = new Candidato();
+        c.setEmail(email);
+        c = buscar(c);
+        System.out.println(c.toString());
+        if(c != null && c.getSenha().equals(senha)){
+            return c;
+        }
+        return null;
+    }
 }
