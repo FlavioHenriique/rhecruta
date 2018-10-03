@@ -29,7 +29,6 @@ public class BuscaPyJobs {
 
     private List<Vaga> buscaVagas() {
         Request request = new Request.Builder().url(url).get().build();
-
         try {
 
             Response response = client.newCall(request).execute();
@@ -42,32 +41,43 @@ public class BuscaPyJobs {
         return new ArrayList<>();
     }
 
-
-    public String buscaCidade(String cidade){
-
+    public String buscaCidade(String cidade) {
         return gson.toJson(
                 buscaVagas()
-                .stream()
-                .filter(v->v.getWorkplace().toLowerCase().contains(cidade))
-                .collect(Collectors.toList())
+                        .stream()
+                        .filter(v -> v.getWorkplace().toLowerCase().contains(cidade))
+                        .collect(Collectors.toList())
         );
     }
 
-    public String buscaDescricao(String descricao){
+    public String buscaDescricao(String descricao) {
         return gson.toJson(
                 buscaVagas()
-                .stream()
-                .filter(v->v.getDescription().toLowerCase().contains(descricao))
-                .collect(Collectors.toList())
+                        .stream()
+                        .filter(v -> v.getDescription().toLowerCase().contains(descricao))
+                        .collect(Collectors.toList())
         );
     }
 
-    public String buscaEmpresa(String empresa){
+    public String buscaEmpresa(String empresa) {
         return gson.toJson(
                 buscaVagas()
-                .stream()
-                .filter(v->v.getCompany_name().toLowerCase().contains(empresa))
-                .collect(Collectors.toList())
+                        .stream()
+                        .filter(v -> v.getCompany_name().toLowerCase().contains(empresa))
+                        .collect(Collectors.toList())
         );
+    }
+
+    public List<Vaga> interessesCandidato(List<Integer> vagas) {
+        List<Vaga> interesses = new ArrayList<>();
+        vagas.forEach(vaga -> {
+            interesses.addAll(
+                    this.buscaVagas()
+                            .stream()
+                            .filter(v -> v.getId() == vaga)
+                            .collect(Collectors.toList())
+            );
+        });
+        return interesses;
     }
 }

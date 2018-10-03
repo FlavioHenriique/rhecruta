@@ -7,9 +7,11 @@ package br.edu.ifpb.dacrhecruta.dao;
 
 import br.edu.ifpb.dacrhecruta.dao.interfaces.CandidatoDaoIF;
 import br.edu.ifpb.dacrhecruta.domain.Candidato;
+import br.edu.ifpb.dacrhecruta.pyjobs.BuscaPyJobs;
 
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -21,6 +23,8 @@ public class CandidatoDao implements CandidatoDaoIF {
 
     @PersistenceContext
     EntityManager em;
+    @Inject
+    private BuscaPyJobs jobs;
 
     @Override
     public void salvar(Candidato obj) {
@@ -29,13 +33,19 @@ public class CandidatoDao implements CandidatoDaoIF {
 
     @Override
     public List<Candidato> buscar() {
-        List<Candidato> candidatos = em.createQuery("SELECT c FROM Candidato c").getResultList();
+        List<Candidato> candidatos = em.createQuery("SELECT c FROM Candidato c")
+                .getResultList();
         return candidatos;
     }
 
     @Override
     public Candidato buscar(Candidato obj) {
-        return em.find(Candidato.class, obj.getEmail());
+        Candidato candidato = em.find(Candidato.class, obj.getEmail());
+
+        candidato.setInteresses(
+                jobs.interessesCandidato(candidato.getVagas())
+        );
+        return candidato;
     }
 
     @Override

@@ -3,9 +3,8 @@ package br.edu.ifpb.dacrhecruta.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 public class Candidato implements Serializable {
@@ -16,10 +15,9 @@ public class Candidato implements Serializable {
     private String curriculo;
     private String nome;
     @ElementCollection
+    private List<Integer> vagas;
+    @Transient
     private List<Vaga> interesses;
-
-    public Candidato() {
-    }
 
     public Candidato(String curriculo, String nome,
             String email, String senha) {
@@ -28,6 +26,20 @@ public class Candidato implements Serializable {
         this.email = email;
         this.senha = senha;
         interesses = new ArrayList<>();
+        vagas = new ArrayList<>();
+    }
+
+    public Candidato(){
+        interesses = new ArrayList<>();
+        vagas = new ArrayList<>();
+    }
+
+    public List<Integer> getVagas() {
+        return vagas;
+    }
+
+    public void setVagas(List<Integer> vagas) {
+        this.vagas = vagas;
     }
 
     public String getEmail() {
@@ -62,9 +74,17 @@ public class Candidato implements Serializable {
         this.nome = nome;
     }
 
-
     public void adicionarInteresse(Vaga v) {
         interesses.add(v);
+        vagas.add(v.getId());
+    }
+
+    public List<Vaga> getInteresses() {
+        return interesses;
+    }
+
+    public void setInteresses(List<Vaga> interesses) {
+        this.interesses = interesses;
     }
 
     @Override
