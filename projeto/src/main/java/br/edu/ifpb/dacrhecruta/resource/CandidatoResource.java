@@ -47,7 +47,6 @@ public class CandidatoResource {
     public Response salvar(String json) {
 
         dao.salvar(gson.fromJson(json, Candidato.class));
-        
         return Response.ok().build();
     }
 
@@ -75,11 +74,12 @@ public class CandidatoResource {
     public Response atualizar(String json) {
 
         Candidato c = gson.fromJson(json, Candidato.class);
-        
-        return Response
-                .ok()
-                .entity(dao.atualizar(c))
-                .build();
+        if(c != null){
+            c = dao.atualizar(c);
+            return Response.ok().entity(c).build();
+        }else{
+            return Response.noContent().build();
+        }
     }
 
     @DELETE
