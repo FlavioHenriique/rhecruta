@@ -1,0 +1,20 @@
+version: '2'
+services:
+    rhecruta-banco-dev:
+        image: projeto-dac/rhecruta-banco-dev
+        build: ../banco
+        volumes:
+          - ./postgres-data-dev:/var/lib/postgresql/data
+    rhecruta-app-dev:
+        image: projeto-dac/rhecruta-app-dev
+        build: .
+        ports:
+          - "8081:8080"
+          - "4849:4848"
+          - "8182:8181"
+        volumes:
+          - ../projeto/autodeploy:/opt/payara5/glassfish/domains/domain1/autodeploy/
+        links:
+          - "rhecruta-banco-dev:host-banco"
+        depends_on: 
+          - rhecruta-banco-dev
