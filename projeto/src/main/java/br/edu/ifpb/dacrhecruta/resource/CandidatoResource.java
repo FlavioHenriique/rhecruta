@@ -1,8 +1,10 @@
 package br.edu.ifpb.dacrhecruta.resource;
 
-import br.edu.ifpb.dacrhecruta.dao.DAO;
+import br.edu.ifpb.dacrhecruta.dao.interfaces.CandidatoDaoIF;
 import br.edu.ifpb.dacrhecruta.domain.Candidato;
 import com.google.gson.Gson;
+import org.json.JSONObject;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -21,9 +23,24 @@ import javax.ws.rs.core.Response;
 public class CandidatoResource {
 
     @Inject
-    //private CandidatoDAO dao;
-    private DAO dao;
+    private CandidatoDaoIF dao;
+    //private DAO dao;
     private Gson gson = new Gson();
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/login")
+    public Response autenticar(String json){
+        JSONObject jobj = new JSONObject(json);
+        Candidato c = dao.autenticar(jobj.getString("email"),
+                jobj.getString("senha"));
+
+        if(c  != null){
+            return Response.ok().entity(c).build();
+        }else{
+            return Response.noContent().build();
+        }
+    }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -37,9 +54,18 @@ public class CandidatoResource {
     @Path("/{email}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response buscarCandidato(@PathParam("email") String email) {
-        Candidato c = (Candidato) dao.buscar(email,Candidato.class);
+        //Candidato c = (Candidato) dao.buscar(email,Candidato.class);
+        
+        Candidato c = new Candidato();
+        c.setEmail(email);
+        c = dao.buscar(c);
+        
         System.out.println(c.toString());
-        return Response.ok().entity(c).build();
+        if(c != null){
+            return Response.ok().entity(c).build();
+        }else{
+            return Response.noContent().build();
+        }
     }
 
     @PUT
@@ -48,17 +74,23 @@ public class CandidatoResource {
     public Response atualizar(String json) {
 
         Candidato c = gson.fromJson(json, Candidato.class);
-        return Response
-                .ok()
-                .entity(dao.atualizar(c,c.getEmail()))
-                .build();
+        if(c != null){
+            c = dao.atualizar(c);
+            return Response.ok().entity(c).build();
+        }else{
+            return Response.noContent().build();
+        }
     }
 
     @DELETE
     @Path("/{email}")
     public Response deletar(@PathParam("email") String email) {
+        
+        Candidato c = new Candidato();
+        c.setEmail(email);
+        c = dao.buscar(c);
 
-        dao.deletar(dao.buscar(email,Candidato.class));
+        dao.deletar(dao.buscar(c));
         return Response.ok().build();
     }
 }

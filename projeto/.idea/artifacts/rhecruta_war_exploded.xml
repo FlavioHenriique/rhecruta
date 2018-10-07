@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="rhecruta:war exploded">
-    <output-path>$PROJECT_DIR$/target/rhecruta</output-path>
+    <output-path />
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -9,6 +9,9 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.5" />
           <element id="library" level="project" name="Maven: postgresql:postgresql:9.1-901-1.jdbc4" />
+          <element id="library" level="project" name="Maven: org.json:json:20180813" />
+          <element id="library" level="project" name="Maven: com.squareup.okhttp3:okhttp:3.11.0" />
+          <element id="library" level="project" name="Maven: com.squareup.okio:okio:1.14.0" />
         </element>
       </element>
       <element id="directory" name="META-INF">
