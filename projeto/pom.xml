@@ -71,6 +71,7 @@
                     <compilerArguments>
                         <endorseddirs>${endorsed.dir}</endorseddirs>
                     </compilerArguments>
+                    <!-- <outputDirectory>autodeploy/rhecruta/classes</outputDirectory> -->
                 </configuration>
             </plugin>
             <plugin>
@@ -78,7 +79,10 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.3</version>
                 <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml> 
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <!-- configurando pasta autodeploy para ser copiada para a pasta autodeploy do payara -->
+                    <webappDirectory>autodeploy/${project.build.finalName}</webappDirectory>
+                    <outputDirectory>autodeploy</outputDirectory>
                 </configuration>
             </plugin>
             <plugin>
