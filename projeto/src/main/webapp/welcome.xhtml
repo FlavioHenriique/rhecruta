@@ -9,7 +9,7 @@
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>PrimeFaces</title>
+                <title>Rhecruta</title>
             </f:facet>
         </h:head>
 
@@ -25,23 +25,15 @@
                     Footer
                 </p:layoutUnit>
 
-                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
-                    <p:menu>
-                        <p:submenu label="Resources">
-                            <p:menuitem value="Demo" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
-                            <p:menuitem value="Documentation" url="http://www.primefaces.org/documentation.html" />
-                            <p:menuitem value="Forum" url="http://forum.primefaces.org/" />
-                            <p:menuitem value="Themes" url="http://www.primefaces.org/themes.html" />
-
-                        </p:submenu>
-
-                    </p:menu>
-                </p:layoutUnit>
-
                 <p:layoutUnit position="center">
-                    Welcome to PrimeFaces
+                    Bem-vindo ao Rhecruta!
                 </p:layoutUnit>
-
+                
+                <h:head>Login Rhecruta</h:head>
+                <p:inputText id="" required="true"/>
+                <p:password id="" required="true"/>
+                <p:commandButton action="${candidato.autenticar()}" id="" value="acessar" />
+                
             </p:layout>
 
         </h:body>

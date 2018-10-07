@@ -1,4 +1,5 @@
-FROM payara/server-full
+FROM payara/server-full:5.183
 
-COPY target/rhecruta.war $DEPLOY_DIR
-CMD ls
+ENV APPNAME rhecruta
+
+COPY target/${APPNAME}.war  ${DEPLOY_DIR}

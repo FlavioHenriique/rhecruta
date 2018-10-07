@@ -14,7 +14,6 @@ import javax.inject.Named;
 @Named("gerente")
 public interface GerenteFacade {
     
-    public String autenticar();
     public String salvar();
     public String buscarGerente();
     public String atualizar();
