@@ -17,8 +17,8 @@ import javax.persistence.PersistenceContext;
  * @author aguirresabino
  */
 @Stateless
-public class CandidatoDao implements CandidatoDaoIF{
-    
+public class CandidatoDao implements CandidatoDaoIF {
+
     @PersistenceContext
     EntityManager em;
 
@@ -30,7 +30,7 @@ public class CandidatoDao implements CandidatoDaoIF{
     @Override
     public List<Candidato> buscar() {
         List<Candidato> candidatos = em.createQuery("SELECT c FROM Candidato").getResultList();
-        return candidatos;        
+        return candidatos;
     }
 
     @Override
@@ -48,5 +48,5 @@ public class CandidatoDao implements CandidatoDaoIF{
         em.merge(obj);
         return this.buscar(obj);
     }
-    
+
 }

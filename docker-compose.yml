@@ -1,0 +1,18 @@
+version: '2'
+services:
+    rhecruta-banco:
+        image: projeto-dac/rhecruta-banco
+        build: ./banco
+        volumes:
+          - ./postgres-data:/var/lib/postgresql/data
+    rhecruta-app:
+        image: projeto-dac/rhecruta-app
+        build: ./projeto
+        ports:
+          - "8081:8080"
+          - "4849:4848"
+          - "8182:8181"
+        links:
+          - "rhecruta-banco:host-banco"
+        depends_on: 
+          - rhecruta-banco
