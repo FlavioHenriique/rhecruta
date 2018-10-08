@@ -17,13 +17,15 @@ public class Avaliacao implements Serializable {
     private Avaliador avaliador;
     @OneToOne
     private Candidato candidato;
-    private int vaga;
+    private int codVaga;
+    @Transient
+    private Vaga vaga;
 
     public Avaliacao() {
     }
 
     public Avaliacao(float nota, String horario, String local, boolean aprovacao,
-                     Gerente gerente, Avaliador avaliador, Candidato candidato, int vaga) {
+                     Gerente gerente, Avaliador avaliador, Candidato candidato, int codVaga) {
         this.nota = nota;
         this.horario = horario;
         this.local = local;
@@ -31,6 +33,14 @@ public class Avaliacao implements Serializable {
         this.gerente = gerente;
         this.avaliador = avaliador;
         this.candidato = candidato;
+        this.codVaga = codVaga;
+    }
+
+    public Vaga getVaga() {
+        return vaga;
+    }
+
+    public void setVaga(Vaga vaga) {
         this.vaga = vaga;
     }
 
@@ -98,11 +108,11 @@ public class Avaliacao implements Serializable {
         this.candidato = candidato;
     }
 
-    public int getVaga() {
-        return vaga;
+    public int getCodVaga() {
+        return codVaga;
     }
 
-    public void setVaga(int vaga) {
-        this.vaga = vaga;
+    public void setCodVaga(int codVaga) {
+        this.codVaga = codVaga;
     }
 }
