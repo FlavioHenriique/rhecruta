@@ -4,3 +4,5 @@
 projeto/target/
 projeto/autodeploy/
 projeto/.idea/
+postgres-data/
+docker-dev/postgres-data-dev/
