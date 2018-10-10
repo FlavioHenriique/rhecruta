@@ -20,21 +20,25 @@
                     <h:form>
                         <p:inputText value="#{candidatoService.candidato.email}" required="true"/>
                         <p:password value="#{candidatoService.candidato.senha}" required="true"/>
-                        <p:commandButton action="${candidatoService.autenticar()}" value="acessar" ajax="false"/>
+                        <p:commandButton action="${candidatoService.autenticar()}" value="Acessar" ajax="false"/>
                     </h:form>
                 </p:layoutUnit>
                 <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
 
                 </p:layoutUnit>
                 <p:layoutUnit position="center">
+                    <h3>Cadastro de candidato</h3>
                     <h:form>
-                        Nome<p:inputText value="#{candidatoService.candidato.nome}" required="true"/>
+                        Nome<br></br>
+                        <p:inputText value="#{candidatoService.candidato.nome}" required="true"/>
                         <br></br>
                         <br></br>
-                        Email<p:inputText value="#{candidatoService.candidato.email}" required="true"/>
+                        Email<br></br>
+                        <p:inputText value="#{candidatoService.candidato.email}" required="true"/>
                         <br></br>
                         <br></br>
-                        Senha<p:password value="#{candidatoService.candidato.senha}" required="true"/>
+                        Senha<br></br>
+                        <p:password value="#{candidatoService.candidato.senha}" required="true"/>
                         <br></br>
                         <br></br>
                         <p:commandButton action="#{candidatoService.salvar()}" value="Cadastrar" ajax="false"/>
