@@ -9,19 +9,19 @@
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Rhecruta</title>
+                <title>Cadastro </title>
             </f:facet>
         </h:head>
 
         <h:body>
             <p:layout fullPage="true">
                 <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
-                    Bem-vindo ao Rhecruta!
+                    
                 </p:layoutUnit>
                 <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
                     Footer
                 </p:layoutUnit>
-                
+
                 <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
                     <p:menu>
                         <p:submenu label="Funções">
@@ -35,9 +35,17 @@
                         </p:submenu>
                     </p:menu>
                 </p:layoutUnit>
-                
+
                 <p:layoutUnit position="center">
-                        Cadastro
+                    <h:form>
+                        Nome<p:inputText value="#{candidatoService.candidato.nome}" required="true"/>
+                        <br></br>
+                        Email<p:inputText value="#{candidatoService.candidato.email}" required="true"/>
+                        <br></br>
+                        Senha<p:password value="#{candidatoService.candidato.senha}" required="true"/>
+                        <br></br>
+                        <p:commandButton action="#{candidatoService.salvar()}" value="Cadastrar" ajax="false"/>
+                    </h:form>
                 </p:layoutUnit>
             </p:layout>
 

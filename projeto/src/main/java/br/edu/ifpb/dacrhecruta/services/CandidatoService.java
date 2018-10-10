@@ -5,18 +5,25 @@
  */
 package br.edu.ifpb.dacrhecruta.services;
 
+import br.edu.ifpb.dacrhecruta.dao.interfaces.CandidatoDaoIF;
+import br.edu.ifpb.dacrhecruta.domain.Candidato;
 import br.edu.ifpb.dacrhecruta.facade.CandidatoFacade;
 import br.edu.ifpb.dacrhecruta.resource.CandidatoResource;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  *
  * @author Lestat
  */
+@Named
+@RequestScoped
 public class CandidatoService implements CandidatoFacade {
-    
-    private String json;
-    private int id;
-    private CandidatoResource resource = new CandidatoResource();
+
+    private Candidato candidato = new Candidato();
+    @Inject
+    private CandidatoDaoIF dao;
 
     @Override
     public String autenticar() {
@@ -26,44 +33,34 @@ public class CandidatoService implements CandidatoFacade {
 
     @Override
     public String salvar() {
-        resource.salvar(json);
+        dao.salvar(candidato);
         return "home.xhtml";
     }
 
     @Override
     public String buscarCandidato() {
-        resource.buscarCandidato(json);
+        dao.buscar(candidato);
         return "home.xhtml";
     }
 
     @Override
     public String atualizar() {
-        resource.atualizar(json);
+        dao.atualizar(candidato);
         return "home.xhtml";
     }
 
     @Override
     public String deletar() {
-        resource.deletar(json);
+        dao.deletar(candidato);
         return "home.xhtml";
     }
 
-    /* Get e Set */
-    public String getJson() {
-        return json;
+    public Candidato getCandidato() {
+        return candidato;
     }
 
-    public void setJson(String json) {
-        this.json = json;
+    public void setCandidato(Candidato candidato) {
+        this.candidato = candidato;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-    
-    
 }
