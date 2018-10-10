@@ -14,26 +14,19 @@
         </h:head>
 
         <h:body>
-
             <p:layout fullPage="true">
-
                 <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
-                    Header
+                    Login Rhecruta
                 </p:layoutUnit>
-
                 <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
                     Footer
                 </p:layoutUnit>
-
-                <p:layoutUnit position="center">
-                    Bem-vindo ao Rhecruta!
-                </p:layoutUnit>
                 
-                <h:head>Login Rhecruta</h:head>
-                <p:inputText id="" required="true"/>
-                <p:password id="" required="true"/>
-                <p:commandButton action="${candidato.autenticar()}" id="" value="acessar" />
-                
+                <h:form>
+                    <p:inputText id="login" required="true"/>
+                    <p:password id="senha" required="true"/>
+                    <p:commandButton action="${candidato.autenticar()}" id="" value="acessar" />
+                </h:form>
             </p:layout>
 
         </h:body>
