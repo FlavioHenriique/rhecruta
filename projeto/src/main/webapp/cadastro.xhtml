@@ -12,7 +12,6 @@
                 <title>Cadastro </title>
             </f:facet>
         </h:head>
-
         <h:body>
             <p:layout fullPage="true">
                 <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
@@ -25,27 +24,19 @@
                 <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
                     <p:menu>
                         <p:submenu label="Funções">
+                            <p:menuitem value="Home" url="home.xhtml" />
                             <p:menuitem value="Cadastrar" url="cadastro.xhtml" />
                             <p:menuitem value="Vagas" url="vagas.xhtml" />
                             <p:menuitem value="Horários" url="horario.xhtml" />
                             <p:menuitem value="Interesses" url="interesses.xhtml" />
                             <p:menuitem value="Recrutamento" url="recrutamento.xhtml" />
                             <p:menuitem value="Newsweek" url="home.xhtml" />
-
                         </p:submenu>
                     </p:menu>
                 </p:layoutUnit>
 
                 <p:layoutUnit position="center">
-                    <h:form>
-                        Nome<p:inputText value="#{candidatoService.candidato.nome}" required="true"/>
-                        <br></br>
-                        Email<p:inputText value="#{candidatoService.candidato.email}" required="true"/>
-                        <br></br>
-                        Senha<p:password value="#{candidatoService.candidato.senha}" required="true"/>
-                        <br></br>
-                        <p:commandButton action="#{candidatoService.salvar()}" value="Cadastrar" ajax="false"/>
-                    </h:form>
+                    
                 </p:layoutUnit>
             </p:layout>
 

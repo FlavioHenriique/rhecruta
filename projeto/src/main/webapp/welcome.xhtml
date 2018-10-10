@@ -5,32 +5,44 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-<f:view contentType="text/html">
-    <h:head>
-        <f:facet name="first">
-            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-            <title>Rhecruta</title>
-        </f:facet>
-    </h:head>
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Rhecruta</title>
+            </f:facet>
+        </h:head>
 
-    <h:body>
-        <p:layout fullPage="true">
-            <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
-                Login Rhecruta
-            </p:layoutUnit>
-            <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
-                Footer
-            </p:layoutUnit>
-            <p:layoutUnit position="center">
-                <h:form>
-                    <p:inputText id="login" required="true"/>
-                    <p:password id="senha" required="true"/>
-                    <p:commandButton action="${candidato.autenticar()}" value="acessar"/>
-                </h:form>
-            </p:layoutUnit>
+        <h:body>
+            <p:layout fullPage="true">
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    Login Rhecruta
+                    <h:form>
+                        <p:inputText value="#{candidatoService.candidato.email}" required="true"/>
+                        <p:password value="#{candidatoService.candidato.senha}" required="true"/>
+                        <p:commandButton action="${candidatoService.autenticar()}" value="acessar" ajax="false"/>
+                    </h:form>
+                </p:layoutUnit>
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
 
-        </p:layout>
-    </h:body>
-</f:view>
+                </p:layoutUnit>
+                <p:layoutUnit position="center">
+                    <h:form>
+                        Nome<p:inputText value="#{candidatoService.candidato.nome}" required="true"/>
+                        <br></br>
+                        <br></br>
+                        Email<p:inputText value="#{candidatoService.candidato.email}" required="true"/>
+                        <br></br>
+                        <br></br>
+                        Senha<p:password value="#{candidatoService.candidato.senha}" required="true"/>
+                        <br></br>
+                        <br></br>
+                        <p:commandButton action="#{candidatoService.salvar()}" value="Cadastrar" ajax="false"/>
+                    </h:for m>
+                </p:layoutUnit>
+
+            </p:layout>
+        </h:body>
+    </f:view>
 </html>
 

@@ -27,8 +27,11 @@ public class CandidatoService implements CandidatoFacade {
 
     @Override
     public String autenticar() {
-        //resource.autenticar(json);
-        return "home.xhtml";
+        if (dao.autenticar(candidato.getEmail(), candidato.getSenha()) != null) {
+            return "home.xhtml";
+        } else {
+            return "welcome.xhtml";
+        }
     }
 
     @Override
