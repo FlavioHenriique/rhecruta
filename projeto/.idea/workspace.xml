@@ -15,8 +15,8 @@
       <file leaf-file-name="NotificacoesEmail.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/br/edu/ifpb/dacrhecruta/javamail/NotificacoesEmail.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
+            <state relative-caret-position="67">
+              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
             </state>
           </provider>
         </entry>
@@ -25,7 +25,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/br/edu/ifpb/dacrhecruta/javamail/Loader.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="322">
-              <caret line="32" selection-start-line="32" selection-end-line="32" />
+              <caret line="33" selection-start-line="33" selection-end-line="33" />
             </state>
           </provider>
         </entry>
@@ -477,16 +477,15 @@
       <workItem from="1538177600901" duration="5040000" />
       <workItem from="1538484878641" duration="174000" />
       <workItem from="1538561606955" duration="7235000" />
-      <workItem from="1538953416196" duration="2426000" />
+      <workItem from="1538953416196" duration="3672000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38067000" />
+    <option name="totallyTimeSpent" value="39313000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="51" y="25" width="1315" height="743" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.501182" side_tool="true" weight="0.32843137" />
@@ -535,7 +534,7 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/br/edu/ifpb/dacrhecruta/domain/Avaliacao.java</url>
+          <url />
           <line>17</line>
           <properties />
           <option name="timeStamp" value="1" />
@@ -879,14 +878,14 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/br/edu/ifpb/dacrhecruta/javamail/Loader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/edu/ifpb/dacrhecruta/javamail/NotificacoesEmail.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
+        <state relative-caret-position="67">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>
