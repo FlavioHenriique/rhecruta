@@ -9,6 +9,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -47,7 +48,7 @@ public class CandidatoService implements CandidatoFacade, Serializable {
 
     @Override
     public String atualizar() {
-        dao.atualizar(candidato);
+        candidato = dao.atualizar(candidato);
         return "home.xhtml";
     }
 

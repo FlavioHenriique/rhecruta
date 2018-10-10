@@ -9,14 +9,12 @@
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>Cadastro </title>
+                <title>Atualizar perfil </title>
             </f:facet>
         </h:head>
         <h:body>
             <p:layout fullPage="true">
-                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
-
-                </p:layoutUnit>
+                <ui:include src="WEB-INF/topo.xhtml"/>
                 <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
                     Footer
                 </p:layoutUnit>
@@ -24,9 +22,23 @@
                 <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
                     <ui:include src="WEB-INF/menu.xhtml"/>
                 </p:layoutUnit>
-
                 <p:layoutUnit position="center">
-
+                    <h3>Atualizar perfil de usuário</h3>
+                    <h:form>
+                        Nome<br></br>
+                        <p:inputText value="#{candidatoService.candidato.nome}" required="true"/>
+                        <br></br>
+                        <br></br>
+                        Email<br></br>
+                        <p:inputText value="#{candidatoService.candidato.email}" required="true"/>
+                        <br></br>
+                        <br></br>
+                        Senha<br></br>
+                        <p:password value="#{candidatoService.candidato.senha}" required="true"/>
+                        <br></br>
+                        <br></br>
+                        <p:commandButton action="#{candidatoService.atualizar()}" value="Atualizar" ajax="false"/>
+                    </h:form>
                 </p:layoutUnit>
             </p:layout>
 

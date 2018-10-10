@@ -14,10 +14,7 @@
         </h:head>
         <h:body>
             <p:layout fullPage="true">
-                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
-                    Bem-vindo ao Rhecruta #{candidatoService.candidato.nome}!
-                    
-                </p:layoutUnit>
+                <ui:include src="WEB-INF/topo.xhtml"/>
                 <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
                     Footer
                 </p:layoutUnit>
