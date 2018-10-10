@@ -41,10 +41,11 @@ public class CandidatoDao implements CandidatoDaoIF {
     @Override
     public Candidato buscar(Candidato obj) {
         Candidato candidato = em.find(Candidato.class, obj.getEmail());
-
-        candidato.setInteresses(
+        if(candidato!= null){
+            candidato.setInteresses(
                 jobs.interessesCandidato(candidato.getVagas())
         );
+        }
         return candidato;
     }
 
@@ -60,11 +61,10 @@ public class CandidatoDao implements CandidatoDaoIF {
     }
     @Override
     public Candidato autenticar(String email, String senha) {
-        System.out.println(email + " " + senha);
         Candidato c = new Candidato();
         c.setEmail(email);
         c = buscar(c);
-        System.out.println(c.toString());
+        
         if(c != null && c.getSenha().equals(senha)){
             return c;
         }
