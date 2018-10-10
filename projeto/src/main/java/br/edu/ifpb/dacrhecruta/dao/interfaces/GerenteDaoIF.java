@@ -13,4 +13,5 @@ import br.edu.ifpb.dacrhecruta.domain.Gerente;
  * @author aguirresabino
  */
 public interface GerenteDaoIF extends IFDaoGeneric<Gerente>{
+    Gerente autenticar(int codigo);
 }

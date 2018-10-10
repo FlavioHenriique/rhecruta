@@ -17,8 +17,8 @@ import javax.persistence.PersistenceContext;
  * @author aguirresabino
  */
 @Stateless
-public class GerenteDao implements GerenteDaoIF{
-    
+public class GerenteDao implements GerenteDaoIF {
+
     @PersistenceContext
     EntityManager em;
 
@@ -48,5 +48,9 @@ public class GerenteDao implements GerenteDaoIF{
         em.merge(obj);
         return this.buscar(obj);
     }
-    
+
+    @Override
+    public Gerente autenticar(int codigo) {
+        return em.find(Gerente.class, codigo);
+    }
 }

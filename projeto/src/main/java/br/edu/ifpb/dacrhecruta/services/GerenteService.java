@@ -1,63 +1,72 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.ifpb.dacrhecruta.services;
 
+import br.edu.ifpb.dacrhecruta.dao.interfaces.GerenteDaoIF;
+import br.edu.ifpb.dacrhecruta.domain.Candidato;
+import br.edu.ifpb.dacrhecruta.domain.Gerente;
 import br.edu.ifpb.dacrhecruta.facade.GerenteFacade;
 import br.edu.ifpb.dacrhecruta.resource.GerenteResource;
+import java.io.Serializable;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  *
  * @author Lestat
  */
-public class GerenteService implements GerenteFacade {
-    
-    private String json;
-    private int id;
-    private GerenteResource resource = new GerenteResource();
+@Named
+@SessionScoped
+public class GerenteService implements GerenteFacade, Serializable {
+
+    private Gerente gerente = new Gerente();
+    @Inject
+    private GerenteDaoIF dao;
 
     @Override
     public String salvar() {
-        resource.salvar(json);
-        return "home.xhtml";
+        dao.salvar(gerente);
+        return "gerente/home.xhtml";
     }
 
-    @Override
     public String buscarGerente() {
-        resource.buscarGerente(id);
-        return "home.xhtml";
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public String atualizar() {
-        resource.atualizar(json);
-        return "home.xhtml";
+        gerente = dao.atualizar(gerente);
+        return "gerente/home.xhtml";
     }
 
     @Override
     public String deletar() {
-        resource.deletar(id);
-        return "home.xhtml";
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    /* Get e Set */
-    public String getJson() {
-        return json;
+    @Override
+    public String autenticar() {
+        System.out.println("entrou");
+        gerente = dao.autenticar(gerente.getCodigo());
+        if (gerente != null) {
+            return "gerente/home.xhtml";
+        } else {
+            gerente = new Gerente();
+            return "welcome.xhtml";
+        }
     }
 
-    public void setJson(String json) {
-        this.json = json;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public String sair() {
+        System.out.println("sair");
+        gerente = new Gerente();
+        return "/welcome.xhtml";
     }
     
-    
+    public Gerente getGerente() {
+        return gerente;
+    }
+
+    public void setGerente(Gerente gerente) {
+        this.gerente = gerente;
+    }
+
 }

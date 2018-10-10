@@ -16,11 +16,17 @@
         <h:body>
             <p:layout fullPage="true">
                 <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
-                    Login Rhecruta
+                    Login Candidato
                     <h:form>
                         <p:inputText value="#{candidatoService.candidato.email}" required="true"/>
                         <p:password value="#{candidatoService.candidato.senha}" required="true"/>
                         <p:commandButton action="${candidatoService.autenticar()}" value="Acessar" ajax="false"/>
+                    </h:form>
+                    <h:form>
+                    &nbsp;
+                    Login Gerente/Avaliador
+                    <p:inputText required="true" value="#{gerenteService.gerente.codigo}"/>
+                    <p:commandButton value="Acessar" action="#{gerenteService.autenticar()}" ajax="false"/>
                     </h:form>
                 </p:layoutUnit>
                 <p:layoutUnit position="south" size="100" closable="true" collapsible="true">

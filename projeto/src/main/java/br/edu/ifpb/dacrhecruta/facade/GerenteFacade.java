@@ -18,5 +18,5 @@ public interface GerenteFacade {
     public String buscarGerente();
     public String atualizar();
     public String deletar();
-    
+    public String autenticar();
 }
