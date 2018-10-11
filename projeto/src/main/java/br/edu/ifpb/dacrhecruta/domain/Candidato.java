@@ -74,11 +74,14 @@ public class Candidato implements Serializable {
         this.nome = nome;
     }
 
-    public void removerInteresse(Vaga v){
-        interesses.remove(v);
-        vagas.remove(v.getId());
+    public void removerInteresse(Vaga v) {
+        for (int k = 0; k < vagas.size(); k++) {
+            if (vagas.get(k) == v.getId()) {
+                vagas.remove(k);
+            }
+        }
     }
-    
+
     public void adicionarInteresse(Vaga v) {
         interesses.add(v);
         vagas.add(v.getId());

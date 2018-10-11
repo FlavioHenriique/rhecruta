@@ -67,7 +67,6 @@ public class CandidatoService implements CandidatoFacade, Serializable {
     }
     
     public void removerInteresse(Vaga interesse){
-        
         this.candidato.removerInteresse(interesse);
         candidato = dao.atualizar(candidato);
     }
