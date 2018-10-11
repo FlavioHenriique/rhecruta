@@ -16,8 +16,8 @@
         <property name="portNumber" value="5432"/>
         <property name="databaseName" value="rhecruta"/>
         <property name="User" value="postgres"/>
-        <!--property name="Password" value="flavio22"/-->
-        <property name="Password" value="avantasia"/>
+        <property name="Password" value="flavio22"/>
+        <!--property name="Password" value="avantasia"/-->
         <property name="URL" value="jdbc:postgresql://localhost:5432/rhecruta"/>
         <property name="driverClass" value="org.postgresql.Driver"/>
     </jdbc-connection-pool>

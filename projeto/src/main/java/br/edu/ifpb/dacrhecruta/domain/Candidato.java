@@ -29,7 +29,7 @@ public class Candidato implements Serializable {
         vagas = new ArrayList<>();
     }
 
-    public Candidato(){
+    public Candidato() {
         interesses = new ArrayList<>();
         vagas = new ArrayList<>();
     }
@@ -89,12 +89,14 @@ public class Candidato implements Serializable {
 
     @Override
     public String toString() {
-        return "Candidato{" +
-                "email='" + email + '\'' +
-                ", senha='" + senha + '\'' +
-                ", curriculo='" + curriculo + '\'' +
-                ", nome='" + nome + '\'' +
-                ", interesses=" + interesses +
-                '}';
+        return "Candidato{"
+                + "email=" + email
+                + ", senha=" + senha
+                + ", curriculo=" + curriculo
+                + ", nome=" + nome
+                + ", vagas=" + vagas
+                + ", interesses="
+                + interesses + '}';
     }
+
 }

@@ -66,6 +66,7 @@ public class CandidatoDao implements CandidatoDaoIF {
         c = buscar(c);
         
         if(c != null && c.getSenha().equals(senha)){
+            System.out.println(c.toString());
             return c;
         }
         return null;
