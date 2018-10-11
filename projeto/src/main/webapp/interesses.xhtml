@@ -15,12 +15,8 @@
 
         <h:body>
             <p:layout fullPage="true">
-                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
-                    Bem-vindo ao Rhecruta!
-                </p:layoutUnit>
-                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
-                    Footer
-                </p:layoutUnit>
+                <ui:include src="WEB-INF/topo.xhtml"/>
+                <ui:include src="WEB-INF/rodape.xhtml"/>
 
                 <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
                     <ui:include src="WEB-INF/menu.xhtml"/>
