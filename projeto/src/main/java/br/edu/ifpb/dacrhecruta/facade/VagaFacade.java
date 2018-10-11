@@ -5,6 +5,8 @@
  */
 package br.edu.ifpb.dacrhecruta.facade;
 
+import br.edu.ifpb.dacrhecruta.domain.Vaga;
+import java.util.List;
 import javax.inject.Named;
 
 /**
@@ -14,8 +16,8 @@ import javax.inject.Named;
 @Named("vaga")
 public interface VagaFacade {
     
-    public String buscaCidade();
-    public String buscaDescricao();
-    public String buscaEmpresa();
+    public void buscaCidade();
+    public void buscaDescricao();
+    public void buscaEmpresa();
     
 }

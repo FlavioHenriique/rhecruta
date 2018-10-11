@@ -5,36 +5,47 @@
  */
 package br.edu.ifpb.dacrhecruta.services;
 
+import br.edu.ifpb.dacrhecruta.domain.Vaga;
 import br.edu.ifpb.dacrhecruta.facade.VagaFacade;
-import br.edu.ifpb.dacrhecruta.resource.VagaResource;
+import br.edu.ifpb.dacrhecruta.pyjobs.BuscaPyJobs;
+import java.util.ArrayList;
+import java.util.List;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  *
  * @author Lestat
  */
+@Named
+@RequestScoped
 public class VagaService implements VagaFacade {
-    
+
     private String cidade;
     private String descricao;
     private String empresa;
-    private VagaResource resource = new VagaResource();
+    @Inject
+    private BuscaPyJobs jobs;
+    private List<Vaga> vagas = new ArrayList<>();
 
     @Override
-    public String buscaCidade() {
-        resource.buscaCidade(cidade);
-        return "home.xhtml";
+    public void buscaCidade() {
+        System.out.println("entrou no busca cidade");
+        System.out.println(cidade);
+        vagas = jobs.buscaCidade(cidade);
+        System.out.println(vagas.toString());
+
     }
 
     @Override
-    public String buscaDescricao() {
-        resource.buscaDescricao(descricao);
-        return "home.xhtml";
+    public void buscaDescricao() {
+        vagas = jobs.buscaDescricao(descricao);
     }
 
     @Override
-    public String buscaEmpresa() {
-        resource.buscaEmpresa(empresa);
-        return "home.xhtml";
+    public void buscaEmpresa() {
+        vagas = jobs.buscaEmpresa(empresa);
     }
 
     /* Get e Set */
@@ -61,5 +72,13 @@ public class VagaService implements VagaFacade {
     public void setEmpresa(String empresa) {
         this.empresa = empresa;
     }
-    
+
+    public List<Vaga> getVagas() {
+        return vagas;
+    }
+
+    public void setVagas(List<Vaga> vagas) {
+        this.vagas = vagas;
+    }
+
 }

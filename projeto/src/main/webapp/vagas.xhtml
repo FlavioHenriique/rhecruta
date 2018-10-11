@@ -23,7 +23,44 @@
                 </p:layoutUnit>
 
                 <p:layoutUnit position="center">
-                    
+                    <h4>Busque vagas aqui!</h4>
+                    <h:form>
+                        Filtrar por cidade: 
+                        <p:inputText value="#{vagaService.cidade}" />
+                        <p:commandButton value="Buscar" action="#{vagaService.buscaCidade()}" ajax="false"/>
+                        <br></br>
+                        <br></br>
+                    </h:form>
+                    <h:form>
+                        Filtrar por empresa: 
+                        <p:inputText value="#{vagaService.empresa}" />
+                        <p:commandButton value="Buscar" action="#{vagaService.buscaEmpresa()}" ajax="false"/>
+                        <br></br>
+                        <br></br>
+                    </h:form>
+                    <h:form>
+                        Filtrar por descrição: 
+                        <p:inputText value="#{vagaService.descricao}" />
+                        <p:commandButton value="Buscar" action="#{vagaService.buscaDescricao()}" ajax="false"/>
+                        <br></br>
+                        <br></br>
+                    </h:form>
+                    <ui:repeat var="vaga" value="#{vagaService.vagas}">
+                        <p:panel  header="#{vaga.title}" style="margin-bottom:20px">
+                            <h:panelGrid columns="2" cellpadding="10">
+                                <b>Descrição: </b>#{vaga.description}
+                                <br></br>
+                                <br></br>
+                                <b>Empresa: </b>#{vaga.company_name}
+                                <br></br>
+                                <br></br>
+                                <b>Local de trabalho: </b>#{vaga.workplace}
+                                <br></br>
+                                <br></br>
+                                <b>Requisitos: </b>#{vaga.requirements}
+                            </h:panelGrid>
+                        </p:panel>
+                    </ui:repeat>
 
                 </p:layoutUnit>
             </p:layout>
