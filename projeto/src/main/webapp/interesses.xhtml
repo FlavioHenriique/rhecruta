@@ -24,7 +24,7 @@
 
                 <p:layoutUnit position="center">
                     <ui:repeat var="vaga" value="#{candidatoService.candidato.interesses}">
-                        <p:panel  header="#{vaga.title}" style="margin-bottom:20px">
+                        <p:panel  header="#{vaga.title}" style="margin-bottom:20px" toggleable="true">
                             <h:panelGrid columns="2" cellpadding="10">
                                 <b>Descrição: </b>#{vaga.description}
                                 <br></br>
@@ -37,6 +37,16 @@
                                 <br></br>
                                 <b>Requisitos: </b>#{vaga.requirements}
                             </h:panelGrid>
+                            <f:facet name="options">
+                                <h:form>
+                                    <p:menu>
+                                        <p:submenu label="Opções">
+                                            <p:menuitem value="Remover"  icon="ui-icon-close" 
+                                                        action="#{candidatoService.removerInteresse(vaga)}"/>
+                                        </p:submenu>
+                                    </p:menu>
+                                </h:form>
+                            </f:facet>
                         </p:panel>
                     </ui:repeat>
                 </p:layoutUnit>

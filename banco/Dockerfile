@@ -1,4 +1,4 @@
-FROM postgres:10.5
+FROM postgres:9.5.10
 
 ENV POSTGRES_USER postgres
 ENV POSTGRES_PASSWORD rhecruta
