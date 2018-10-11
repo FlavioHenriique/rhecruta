@@ -8,9 +8,12 @@ package br.edu.ifpb.dacrhecruta.services;
 import br.edu.ifpb.dacrhecruta.domain.Vaga;
 import br.edu.ifpb.dacrhecruta.facade.VagaFacade;
 import br.edu.ifpb.dacrhecruta.pyjobs.BuscaPyJobs;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -19,22 +22,24 @@ import javax.inject.Named;
  * @author Lestat
  */
 @Named
-@RequestScoped
-public class VagaService implements VagaFacade {
+@ViewScoped
+public class VagaService implements VagaFacade, Serializable {
 
     private String cidade;
     private String descricao;
     private String empresa;
     @Inject
     private BuscaPyJobs jobs;
-    private List<Vaga> vagas = new ArrayList<>();
+    private List<Vaga> vagas;
+
+    @PostConstruct
+    public void init() {
+        vagas = new ArrayList<>();
+    }
 
     @Override
     public void buscaCidade() {
-        System.out.println("entrou no busca cidade");
-        System.out.println(cidade);
         vagas = jobs.buscaCidade(cidade);
-        System.out.println(vagas.toString());
 
     }
 

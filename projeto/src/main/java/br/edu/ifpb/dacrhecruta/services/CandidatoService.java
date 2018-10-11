@@ -2,6 +2,7 @@ package br.edu.ifpb.dacrhecruta.services;
 
 import br.edu.ifpb.dacrhecruta.dao.interfaces.CandidatoDaoIF;
 import br.edu.ifpb.dacrhecruta.domain.Candidato;
+import br.edu.ifpb.dacrhecruta.domain.Vaga;
 import br.edu.ifpb.dacrhecruta.facade.CandidatoFacade;
 import br.edu.ifpb.dacrhecruta.resource.CandidatoResource;
 import java.io.Serializable;
@@ -58,6 +59,19 @@ public class CandidatoService implements CandidatoFacade, Serializable {
         return "home.xhtml";
     }
 
+    public void adicionarInteresse(Vaga interesse){
+        System.out.println("adicionar");
+        candidato.adicionarInteresse(interesse);
+        candidato = dao.atualizar(candidato);
+     //   return "vagas.xhtml";
+    }
+    
+    public void removerInteresse(Vaga interesse){
+        
+        this.candidato.removerInteresse(interesse);
+        candidato = dao.atualizar(candidato);
+    }
+    
     public String sair() {
         System.out.println("sair");
         candidato = new Candidato();
