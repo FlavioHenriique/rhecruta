@@ -51,19 +51,24 @@
                             value="Agendar" 
                             ajax="false"/>
                     </h:form>
-                    <!-- Ver todos e Cancelar Agendamentos -->
-                    <ui:repeat var="horario" value="#{agenda.agendamentos}">
-                        <p:panel  header="" style="margin-bottom:20px">
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <b>Local: </b>#{agendaService.avaliacao.local}
-                                <br></br>
-                                <br></br>
-                                <b>Horário: </b>#{agendaService.avaliacao.horario}
-                                <br></br>
-                                <p:commandButton action="#{agenda.cancelar()}" value="Cancelar" ajax="false"/>
-                            </h:panelGrid>
-                        </p:panel>
-                    </ui:repeat>
+                    <h:form>
+                        <!-- Ver todos e Cancelar Agendamentos -->
+                        <ui:repeat var="horario" value="#{avaliacaoService.minhasAvaliacoes}">
+                            <p:panel style="margin-bottom:20px" header="#{horario.vaga.title}">
+                                <h:panelGrid columns="2" cellpadding="10">
+                                    <br></br>
+                                    <br></br>
+                                    <b>Local: </b>#{horario.local}
+                                    <br></br>
+                                    <br></br>
+                                    <b>Horário: </b>#{horario.horario}
+                                    <br></br>
+                                    <p:commandButton action="#{avaliacaoService.deletar(horario)}" value="Cancelar" ajax="false"/>
+                                </h:panelGrid>
+                            </p:panel>
+                        </ui:repeat>
+                    </h:form>
+
                 </p:layoutUnit>
             </p:layout>
         </h:body>

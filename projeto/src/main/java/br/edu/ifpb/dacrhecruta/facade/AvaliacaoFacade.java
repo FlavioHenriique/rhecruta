@@ -5,6 +5,7 @@
  */
 package br.edu.ifpb.dacrhecruta.facade;
 
+import br.edu.ifpb.dacrhecruta.domain.Avaliacao;
 import javax.inject.Named;
 
 /**
@@ -17,6 +18,6 @@ public interface AvaliacaoFacade {
     public String salvar();
     public String buscarAvaliacao();
     public String atualizar();
-    public String deletar();
+    public String deletar(Avaliacao avaliacao);
     
 }

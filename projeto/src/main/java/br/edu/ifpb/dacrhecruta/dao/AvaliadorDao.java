@@ -6,6 +6,7 @@
 package br.edu.ifpb.dacrhecruta.dao;
 
 import br.edu.ifpb.dacrhecruta.dao.interfaces.AvaliadorDaoIF;
+import br.edu.ifpb.dacrhecruta.domain.Avaliacao;
 import br.edu.ifpb.dacrhecruta.domain.Avaliador;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -44,5 +45,7 @@ public class AvaliadorDao implements AvaliadorDaoIF{
         em.merge(obj);
         return this.buscar(obj);
     }
+
+    
     
 }

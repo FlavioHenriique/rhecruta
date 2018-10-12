@@ -9,6 +9,9 @@ import br.edu.ifpb.dacrhecruta.dao.interfaces.AvaliacaoDaoIF;
 import br.edu.ifpb.dacrhecruta.domain.Avaliacao;
 import br.edu.ifpb.dacrhecruta.domain.Candidato;
 import br.edu.ifpb.dacrhecruta.facade.AvaliacaoFacade;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.el.ELContext;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.annotation.ManagedProperty;
@@ -30,38 +33,51 @@ public class AvaliacaoService implements AvaliacaoFacade {
     private AvaliacaoDaoIF resource;
     @ManagedProperty(value = "#{candidatoService}")
     private CandidatoService candidato;
+    private List<Avaliacao> minhasAvaliacoes = new ArrayList<>();
 
-    @Override
-    public String salvar() {
-
-        avaliacao.setCodVaga(avaliacao.getVaga().getId());
+    @PostConstruct
+    public void init() {
         ELContext el = FacesContext.getCurrentInstance().getELContext();
         candidato = (CandidatoService) FacesContext
                 .getCurrentInstance()
                 .getApplication()
                 .getELResolver()
                 .getValue(el, null, "candidatoService");
+        minhasAvaliacoes();
+    }
+
+    @Override
+    public String salvar() {
+
+        avaliacao.setCodVaga(avaliacao.getVaga().getId());
+
         avaliacao.setCandidato(candidato.getCandidato());
         resource.salvar(avaliacao);
-        return "home.xhtml";
+        minhasAvaliacoes();
+        return "horario.xhtml";
     }
 
     @Override
     public String buscarAvaliacao() {
         resource.buscar(avaliacao);
-        return "home.xhtml";
+        return "horario.xhtml";
     }
 
     @Override
     public String atualizar() {
         resource.atualizar(avaliacao);
-        return "home.xhtml";
+        return "horario.xhtml";
+    }
+
+    public void minhasAvaliacoes() {
+        minhasAvaliacoes = resource.buscar(candidato.getCandidato());
     }
 
     @Override
-    public String deletar() {
+    public String deletar(Avaliacao avaliacao) {
         resource.deletar(avaliacao);
-        return "home.xhtml";
+        minhasAvaliacoes();
+        return "horario.xhtml";
     }
 
     /* Get e Set */
@@ -71,6 +87,14 @@ public class AvaliacaoService implements AvaliacaoFacade {
 
     public void setAvaliacao(Avaliacao avaliacao) {
         this.avaliacao = avaliacao;
+    }
+
+    public List<Avaliacao> getMinhasAvaliacoes() {
+        return minhasAvaliacoes;
+    }
+
+    public void setMinhasAvaliacoes(List<Avaliacao> minhasAvaliacoes) {
+        this.minhasAvaliacoes = minhasAvaliacoes;
     }
 
 }
