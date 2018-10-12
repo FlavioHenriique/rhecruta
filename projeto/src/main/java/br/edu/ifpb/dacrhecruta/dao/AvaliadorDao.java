@@ -45,6 +45,11 @@ public class AvaliadorDao implements AvaliadorDaoIF{
         em.merge(obj);
         return this.buscar(obj);
     }
+    
+    public Avaliador autenticar(Avaliador avaliador){
+        return buscar(avaliador);
+        
+    }
 
     
     

@@ -16,7 +16,7 @@
         <!-- Página de acesso ao sistema / Login de Candidato e Gerente -->
         <h:body>
             <p:layout fullPage="true">
-                <p:layoutUnit position="north" size="150" resizable="true" closable="true" collapsible="true">
+                <p:layoutUnit position="north" size="230" resizable="true" closable="true" collapsible="true">
                     Login Candidato
                     <h:form>
                         <p:inputText value="#{candidatoService.candidato.email}" required="true"/>
@@ -25,9 +25,15 @@
                     </h:form>
                     <h:form>
                         &nbsp;<br></br>
-                        Login Gerente/Avaliador<br></br>
-                    <p:inputText required="true" value="#{gerenteService.gerente.codigo}"/>
-                    <p:commandButton value="Acessar" action="#{gerenteService.autenticar()}" ajax="false"/>
+                        Login Gerente<br></br>
+                        <p:inputText required="true" value="#{gerenteService.gerente.codigo}"/>
+                        <p:commandButton value="Acessar" action="#{gerenteService.autenticar()}" ajax="false"/>
+                    </h:form>
+                    <h:form>
+                        &nbsp;<br></br>
+                        Login Avaliador<br></br>
+                        <p:inputText required="true" value="#{avaliadorService.avaliador.codigo}"/>
+                        <p:commandButton value="Acessar" action="#{avaliadorService.autenticar()}" ajax="false"/>
                     </h:form>
                 </p:layoutUnit>
                 <ui:include src="WEB-INF/rodape.xhtml"/>

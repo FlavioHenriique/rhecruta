@@ -1,62 +1,63 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.ifpb.dacrhecruta.services;
 
+import br.edu.ifpb.dacrhecruta.dao.interfaces.AvaliadorDaoIF;
+import br.edu.ifpb.dacrhecruta.domain.Avaliador;
 import br.edu.ifpb.dacrhecruta.facade.AvaliadorFacade;
-import br.edu.ifpb.dacrhecruta.resource.AvaliadorResource;
+import java.io.Serializable;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
-/**
- *
- * @author JuliermeH
- */
-public class AvaliadorService implements AvaliadorFacade {
-    
-    private String json;
-    private int id;
-    private AvaliadorResource resource = new AvaliadorResource();
+@Named
+@SessionScoped
+public class AvaliadorService implements AvaliadorFacade, Serializable {
+
+    private Avaliador avaliador = new Avaliador();
+    @Inject
+    private AvaliadorDaoIF dao;
 
     @Override
     public String salvar() {
-        resource.salvar(json);
+        dao.salvar(avaliador);
+        avaliador = new Avaliador();
         return "home.xhtml";
     }
 
     @Override
     public String buscarAvaliador() {
-        resource.buscarAvaliador(id);
+
         return "home.xhtml";
     }
 
     @Override
     public String atualizar() {
-        resource.atualizar(json);
+        dao.atualizar(avaliador);
         return "home.xhtml";
     }
 
     @Override
     public String deletar() {
-        resource.deletar(id);
+
         return "home.xhtml";
     }
 
-    /* Get e Set */
-    public int getId() {
-        return id;
+    public String autenticar() {
+        avaliador = dao.buscar(avaliador);
+        if (avaliador != null) {
+            return "avaliador/home.xhtml";
+        } else {
+            avaliador = new Avaliador();
+            return "welcome.xhtml";
+        }
+
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Avaliador getAvaliador() {
+        return avaliador;
     }
 
-    public String getJson() {
-        return json;
+    public void setAvaliador(Avaliador avaliador) {
+        this.avaliador = avaliador;
     }
 
-    public void setJson(String json) {
-        this.json = json;
-    }
-    
 }
