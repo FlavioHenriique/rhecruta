@@ -7,6 +7,7 @@ import br.edu.ifpb.dacrhecruta.domain.Avaliador;
 import br.edu.ifpb.dacrhecruta.domain.Avaliador;
 import br.edu.ifpb.dacrhecruta.facade.AvaliadorFacade;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -48,6 +49,12 @@ public class AvaliadorService implements AvaliadorFacade, Serializable {
         return "home.xhtml";
     }
 
+    public String cancelarAvaliacao(Avaliacao avaliacao) {
+        this.avaliacao.deletar(avaliacao);
+        this.buscaAvaliacoes = new ArrayList<>();
+        return "/faces/avaliador/avaliacoes.xhtml";
+    }
+
     public String autenticar() {
         avaliador = dao.buscar(avaliador);
         if (avaliador != null) {
@@ -64,12 +71,12 @@ public class AvaliadorService implements AvaliadorFacade, Serializable {
         return "/welcome.xhtml";
     }
 
+    public void buscaPorVaga(int id){
+        buscaAvaliacoes= avaliacao.buscaPorVaga(id);
+    }
+    
     public void buscaPorCandidato(String email) {
-        System.out.println("bind");
-        System.out.println(email);
         this.buscaAvaliacoes = avaliacao.buscaPorCandidato(email);
-        
-        
     }
 
     public Avaliador getAvaliador() {

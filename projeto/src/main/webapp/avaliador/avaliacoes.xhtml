@@ -28,11 +28,19 @@
                             <h4>Buscar avaliações</h4>
                             Filtrar por candidato
                             <br></br>
-                            <br></br>
                             <p:inputText binding="#{candidatoBusca}"/>
                             <p:commandButton 
                                 value="Buscar" 
                                 action="#{avaliadorService.buscaPorCandidato(candidatoBusca.value)}"
+                                ajax="false"/>
+                        </h:form>
+                        <h:form>
+                            Filtrar por vaga
+                            <br></br>
+                            <p:inputText binding="#{vaga}"/>
+                            <p:commandButton 
+                                value="Buscar" 
+                                action="#{avaliadorService.buscaPorVaga(vaga.value)}"
                                 ajax="false"/>
                         </h:form>
                         <br></br>
@@ -48,6 +56,12 @@
                                         <br></br>
                                         <br></br>
                                         <b>Vaga: </b> #{avaliacao.vaga.title}
+                                        <br></br>
+                                        <br></br>
+                                        <p:commandButton 
+                                            value="Cancelar"
+                                            action="#{avaliadorService.cancelarAvaliacao(avaliacao)}"
+                                            ajax="false"/>
                                     </h:panelGrid>
                                 </p:panel>
                             </ui:repeat>
