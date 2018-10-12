@@ -2,8 +2,10 @@ package br.edu.ifpb.dacrhecruta.dao;
 
 import br.edu.ifpb.dacrhecruta.dao.interfaces.AvaliacaoDaoIF;
 import br.edu.ifpb.dacrhecruta.domain.Avaliacao;
+import br.edu.ifpb.dacrhecruta.pyjobs.BuscaPyJobs;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
@@ -13,6 +15,8 @@ public class AvaliacaoDao implements AvaliacaoDaoIF {
 
     @PersistenceContext
     private EntityManager em;
+    @Inject
+    private BuscaPyJobs jobs;
 
     @Override
     public void salvar(Avaliacao obj) {
@@ -28,7 +32,12 @@ public class AvaliacaoDao implements AvaliacaoDaoIF {
 
     @Override
     public Avaliacao buscar(Avaliacao obj) {
-        return em.find(Avaliacao.class,obj.getId());
+
+        Avaliacao a = em.find(Avaliacao.class,obj.getId());
+        if(a!= null){
+            a.setVaga(jobs.buscaVaga(a.getCodVaga()));
+        }
+        return a;
     }
 
     @Override

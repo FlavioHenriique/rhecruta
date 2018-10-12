@@ -2,11 +2,15 @@ package br.edu.ifpb.dacrhecruta.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
+
+
 @Entity
 public class Avaliacao implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private  int id;
+    private int id;
     private float nota;
     private String horario;
     private String local;
@@ -17,13 +21,15 @@ public class Avaliacao implements Serializable {
     private Avaliador avaliador;
     @OneToOne
     private Candidato candidato;
-    private int vaga;
+    private int codVaga;
+    @Transient
+    private Vaga vaga;
 
     public Avaliacao() {
     }
 
     public Avaliacao(float nota, String horario, String local, boolean aprovacao,
-                     Gerente gerente, Avaliador avaliador, Candidato candidato, int vaga) {
+            Gerente gerente, Avaliador avaliador, Candidato candidato, int codVaga) {
         this.nota = nota;
         this.horario = horario;
         this.local = local;
@@ -31,13 +37,14 @@ public class Avaliacao implements Serializable {
         this.gerente = gerente;
         this.avaliador = avaliador;
         this.candidato = candidato;
-        this.vaga = vaga;
+        this.codVaga = codVaga;
     }
-    
-    public Avaliacao(String horario, String local, Candidato candidato, int vaga) {
-        this.horario = horario;
-        this.local = local;
-        this.candidato = candidato;
+
+    public Vaga getVaga() {
+        return vaga;
+    }
+
+    public void setVaga(Vaga vaga) {
         this.vaga = vaga;
     }
 
@@ -105,11 +112,11 @@ public class Avaliacao implements Serializable {
         this.candidato = candidato;
     }
 
-    public int getVaga() {
-        return vaga;
+    public int getCodVaga() {
+        return codVaga;
     }
 
-    public void setVaga(int vaga) {
-        this.vaga = vaga;
+    public void setCodVaga(int codVaga) {
+        this.codVaga = codVaga;
     }
 }

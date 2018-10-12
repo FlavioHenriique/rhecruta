@@ -2,12 +2,15 @@ package br.edu.ifpb.dacrhecruta.pyjobs;
 
 import br.edu.ifpb.dacrhecruta.domain.Vaga;
 import com.google.gson.Gson;
+
 import java.io.IOException;
 import java.util.ArrayList;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import javax.ejb.Stateless;
 import java.util.Arrays;
 import java.util.List;
@@ -78,5 +81,13 @@ public class BuscaPyJobs {
             );
         });
         return interesses;
+    }
+
+    public Vaga buscaVaga(int id) {
+        return this.buscaVagas()
+                .stream()
+                .filter(v -> v.getId() == id)
+                .findFirst()
+                .get();
     }
 }
