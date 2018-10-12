@@ -7,8 +7,13 @@ package br.edu.ifpb.dacrhecruta.services;
 
 import br.edu.ifpb.dacrhecruta.dao.interfaces.AvaliacaoDaoIF;
 import br.edu.ifpb.dacrhecruta.domain.Avaliacao;
+import br.edu.ifpb.dacrhecruta.domain.Candidato;
 import br.edu.ifpb.dacrhecruta.facade.AvaliacaoFacade;
+import javax.el.ELContext;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.annotation.ManagedProperty;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -19,17 +24,24 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class AvaliacaoService implements AvaliacaoFacade {
-    
+
     private Avaliacao avaliacao = new Avaliacao();
     @Inject
     private AvaliacaoDaoIF resource;
-    @Inject
+    @ManagedProperty(value = "#{candidatoService}")
     private CandidatoService candidato;
 
     @Override
     public String salvar() {
-        System.out.println("entrou");
-        System.out.println(avaliacao.toString());
+
+        avaliacao.setCodVaga(avaliacao.getVaga().getId());
+        ELContext el = FacesContext.getCurrentInstance().getELContext();
+        candidato = (CandidatoService) FacesContext
+                .getCurrentInstance()
+                .getApplication()
+                .getELResolver()
+                .getValue(el, null, "candidatoService");
+        avaliacao.setCandidato(candidato.getCandidato());
         resource.salvar(avaliacao);
         return "home.xhtml";
     }
@@ -60,5 +72,5 @@ public class AvaliacaoService implements AvaliacaoFacade {
     public void setAvaliacao(Avaliacao avaliacao) {
         this.avaliacao = avaliacao;
     }
-    
+
 }

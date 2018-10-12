@@ -26,7 +26,10 @@
                         <h:messages id="errorMessages" style="color:red;margin:8px;" />
                         <p:outputLabel for="vagas" value="Vaga:" />
                         <br></br>
-                        <p:selectOneMenu id="vagas" value="#{avaliacaoService.avaliacao.vaga}" style="width:125px">
+
+                        <p:selectOneMenu id="vagas" value="#{avaliacaoService.avaliacao.vaga}" 
+                                         style="width:125px"
+                                         converter="convert.vaga">
                             <f:selectItems 
                                 itemLabel="#{vaga.title}" 
                                 itemValue="#{vaga}" 
