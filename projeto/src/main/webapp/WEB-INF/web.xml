@@ -26,4 +26,12 @@
         <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>  
         <param-value>true</param-value>  
     </context-param>  
+    <filter>
+        <filter-name>primeUploadFilter</filter-name>
+        <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>primeUploadFilter</filter-name>
+        <servlet-name>Faces Servlet</servlet-name>
+    </filter-mapping>
 </web-app>

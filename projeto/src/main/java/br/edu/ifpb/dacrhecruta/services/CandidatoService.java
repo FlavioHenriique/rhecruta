@@ -5,12 +5,15 @@ import br.edu.ifpb.dacrhecruta.domain.Candidato;
 import br.edu.ifpb.dacrhecruta.domain.Vaga;
 import br.edu.ifpb.dacrhecruta.facade.CandidatoFacade;
 import br.edu.ifpb.dacrhecruta.resource.CandidatoResource;
+import java.io.File;
 import java.io.Serializable;
+import java.util.Base64;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
+import org.primefaces.event.FileUploadEvent;
 
 /**
  *
@@ -19,11 +22,14 @@ import javax.servlet.http.HttpSession;
 @Named
 @SessionScoped
 public class CandidatoService implements CandidatoFacade, Serializable {
-
+    
     private Candidato candidato = new Candidato();
     @Inject
     private CandidatoDaoIF dao;
-
+    
+    public CandidatoService() {
+    }
+    
     @Override
     public String autenticar() {
         if (dao.autenticar(candidato.getEmail(), candidato.getSenha()) != null) {
@@ -34,40 +40,57 @@ public class CandidatoService implements CandidatoFacade, Serializable {
             return "welcome.xhtml";
         }
     }
-
+    
     @Override
     public String salvar() {
         dao.salvar(candidato);
         return "home.xhtml";
     }
-
+    
     @Override
     public String buscarCandidato() {
         dao.buscar(candidato);
         return "home.xhtml";
     }
-
+    
     @Override
     public String atualizar() {
         candidato = dao.atualizar(candidato);
         return "home.xhtml";
     }
-
+    
     @Override
     public String deletar() {
         dao.deletar(candidato);
         return "home.xhtml";
     }
-
-    public void adicionarInteresse(Vaga interesse){
+    
+    public void adicionarInteresse(Vaga interesse) {
         System.out.println("adicionar");
         candidato.adicionarInteresse(interesse);
         candidato = dao.atualizar(candidato);
-     //   return "vagas.xhtml";
+        //   return "vagas.xhtml";
     }
     
-    public void removerInteresse(Vaga interesse){
+    public void removerInteresse(Vaga interesse) {
         this.candidato.removerInteresse(interesse);
+        candidato = dao.atualizar(candidato);
+    }
+    
+    public void doUpload(FileUploadEvent fileUploadEvent) {
+        
+        String curriculo = Base64
+                .getEncoder()
+                .encodeToString(
+                        fileUploadEvent.getFile().getContents()
+                );
+        candidato.setCurriculo(curriculo);
+        candidato = dao.atualizar(candidato);
+    }
+    
+    public void removerCurriculo() {
+        candidato.setCurriculo(null);
+        System.out.println(candidato.toString());
         candidato = dao.atualizar(candidato);
     }
     
@@ -76,13 +99,13 @@ public class CandidatoService implements CandidatoFacade, Serializable {
         candidato = new Candidato();
         return "welcome.xhtml";
     }
-
+    
     public Candidato getCandidato() {
         return candidato;
     }
-
+    
     public void setCandidato(Candidato candidato) {
         this.candidato = candidato;
     }
-
+    
 }
