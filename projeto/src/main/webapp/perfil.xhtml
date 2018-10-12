@@ -17,6 +17,7 @@
                 <ui:include src="WEB-INF/topo.xhtml"/>
                 <ui:include src="WEB-INF/rodape.xhtml"/>
 
+                <!-- Atualizar perfil -->
                 <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
                     <ui:include src="WEB-INF/menu.xhtml"/>
                 </p:layoutUnit>
@@ -37,6 +38,7 @@
                         <br></br>
                         <p:commandButton action="#{candidatoService.atualizar()}" value="Atualizar" ajax="false"/>
                     </h:form>
+                    <!-- Enviar e Remover currículo -->
                     <h:form enctype="multipart/form-data">
                         <br></br>
                         Adicionar currículo

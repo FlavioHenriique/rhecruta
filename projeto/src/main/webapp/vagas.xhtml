@@ -18,6 +18,8 @@
                 <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
                     <ui:include src="WEB-INF/menu.xhtml"/>
                 </p:layoutUnit>
+                
+                <!-- Buscar Vagas usando filtro -->
                 <p:layoutUnit position="center">
                     <h4>Busque vagas aqui!</h4>
                     <h:form>
@@ -59,11 +61,9 @@
                                     <br></br>    
                                     <p:commandButton value="Candidatar-se" action="#{candidatoService.adicionarInteresse(vaga)}" ajax="false"/>
                                 </h:panelGrid>
-
                             </p:panel>
                         </ui:repeat>
                     </h:form>
-
 
                 </p:layoutUnit>
             </p:layout>
