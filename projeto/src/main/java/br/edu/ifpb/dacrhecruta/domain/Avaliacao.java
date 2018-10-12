@@ -2,11 +2,15 @@ package br.edu.ifpb.dacrhecruta.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
+
+
 @Entity
 public class Avaliacao implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private  int id;
+    private int id;
     private float nota;
     private String horario;
     private String local;
@@ -25,7 +29,7 @@ public class Avaliacao implements Serializable {
     }
 
     public Avaliacao(float nota, String horario, String local, boolean aprovacao,
-                     Gerente gerente, Avaliador avaliador, Candidato candidato, int codVaga) {
+            Gerente gerente, Avaliador avaliador, Candidato candidato, int codVaga) {
         this.nota = nota;
         this.horario = horario;
         this.local = local;

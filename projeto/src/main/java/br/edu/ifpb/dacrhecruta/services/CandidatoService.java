@@ -17,7 +17,7 @@ import org.primefaces.event.FileUploadEvent;
 
 /**
  *
- * @author Lestat
+ * @author JuliermeH
  */
 @Named
 @SessionScoped

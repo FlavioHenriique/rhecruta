@@ -1,10 +1,8 @@
 package br.edu.ifpb.dacrhecruta.services;
 
 import br.edu.ifpb.dacrhecruta.dao.interfaces.GerenteDaoIF;
-import br.edu.ifpb.dacrhecruta.domain.Candidato;
 import br.edu.ifpb.dacrhecruta.domain.Gerente;
 import br.edu.ifpb.dacrhecruta.facade.GerenteFacade;
-import br.edu.ifpb.dacrhecruta.resource.GerenteResource;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -12,7 +10,7 @@ import javax.inject.Named;
 
 /**
  *
- * @author Lestat
+ * @author JuliermeH
  */
 @Named
 @SessionScoped
@@ -28,6 +26,7 @@ public class GerenteService implements GerenteFacade, Serializable {
         return "gerente/home.xhtml";
     }
 
+    @Override
     public String buscarGerente() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

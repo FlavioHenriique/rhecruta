@@ -23,18 +23,31 @@
                 </p:layoutUnit>
 
                 <p:layoutUnit position="center">
+                    <h3>Agendar</h3>
+                    <h:form>
+                        Local<br></br>
+                        <p:inputText value="#{avaliacaoService.avaliacao.local}" required="true"/>
+                        <br></br>
+                        <br></br>
+                        Email<br></br>
+                        <p:inputText value="#{avaliacaoService.avaliacao.horario}" required="true"/>
+                        <br></br>
+                        <br></br>
+                        <p:commandButton action="#{agenda.agendar()}" value="Agendar" ajax="false"/>
+                    </h:form>
                     <!-- falta agendar -->
-                    <ui:repeat var="horario" value="#{agenda.exibirHorarios}">
+                    <ui:repeat var="horario" value="#{agenda.agendamentos}">
                         <p:panel  header="" style="margin-bottom:20px">
                             <h:panelGrid columns="2" cellpadding="10">
-                                <b>Local: </b>#{avaliacaoService.avaliacao.local}
+                                <b>Local: </b>#{agendaService.avaliacao.local}
                                 <br></br>
                                 <br></br>
-                                <b>Horário: </b>#{avaliacaoService.avaliacao.horario}
+                                <b>Horário: </b>#{agendaService.avaliacao.horario}
+                                <br></br>
+                                <p:commandButton action="#{agenda.cancelar()}" value="Cancelar" ajax="false"/>
                             </h:panelGrid>
                         </p:panel>
                     </ui:repeat>
-                    <!-- falta cancelar um agendamento -->
                 </p:layoutUnit>
             </p:layout>
 
