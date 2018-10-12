@@ -19,7 +19,7 @@
                 <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
                     <ui:include src="WEB-INF/menu.xhtml"/>
                 </p:layoutUnit>
-
+                <!-- Fazer agendamentos -->
                 <p:layoutUnit position="center">
                     <h3>Agendar</h3>
                     <h:form>
@@ -48,7 +48,7 @@
                             value="Agendar" 
                             ajax="false"/>
                     </h:form>
-                    <!-- falta agendar -->
+                    <!-- Ver todos e Cancelar Agendamentos -->
                     <ui:repeat var="horario" value="#{agenda.agendamentos}">
                         <p:panel  header="" style="margin-bottom:20px">
                             <h:panelGrid columns="2" cellpadding="10">
