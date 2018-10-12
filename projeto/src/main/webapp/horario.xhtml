@@ -23,7 +23,18 @@
                 </p:layoutUnit>
 
                 <p:layoutUnit position="center">
-                    Newsweek
+                    <!-- falta agendar -->
+                    <ui:repeat var="horario" value="#{agenda.exibirHorarios}">
+                        <p:panel  header="" style="margin-bottom:20px">
+                            <h:panelGrid columns="2" cellpadding="10">
+                                <b>Local: </b>#{avaliacaoService.avaliacao.local}
+                                <br></br>
+                                <br></br>
+                                <b>Horário: </b>#{avaliacaoService.avaliacao.horario}
+                            </h:panelGrid>
+                        </p:panel>
+                    </ui:repeat>
+                    <!-- falta cancelar um agendamento -->
                 </p:layoutUnit>
             </p:layout>
 

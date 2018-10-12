@@ -5,9 +5,11 @@
  */
 package br.edu.ifpb.dacrhecruta.services;
 
+import br.edu.ifpb.dacrhecruta.dao.interfaces.AvaliacaoDaoIF;
+import br.edu.ifpb.dacrhecruta.domain.Avaliacao;
 import br.edu.ifpb.dacrhecruta.facade.AvaliacaoFacade;
-import br.edu.ifpb.dacrhecruta.resource.AvaliacaoResource;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -18,49 +20,42 @@ import javax.inject.Named;
 @RequestScoped
 public class AvaliacaoService implements AvaliacaoFacade {
     
-    private String json;
-    private int id;
-    private AvaliacaoResource resource = new AvaliacaoResource();
+    private Avaliacao avaliacao = new Avaliacao();
+    @Inject
+    private AvaliacaoDaoIF resource;
+    
 
     @Override
     public String salvar() {
-        resource.salvar(json);
+        resource.salvar(avaliacao);
         return "home.xhtml";
     }
 
     @Override
     public String buscarAvaliacao() {
-        resource.buscarAvaliacao(id);
+        resource.buscar(avaliacao);
         return "home.xhtml";
     }
 
     @Override
     public String atualizar() {
-        resource.atualizar(json);
+        resource.atualizar(avaliacao);
         return "home.xhtml";
     }
 
     @Override
     public String deletar() {
-        resource.deletar(id);
+        resource.deletar(avaliacao);
         return "home.xhtml";
     }
 
     /* Get e Set */
-    public String getJson() {
-        return json;
+    public Avaliacao getAvaliacao() {
+        return avaliacao;
     }
 
-    public void setJson(String json) {
-        this.json = json;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setAvaliacao(Avaliacao avaliacao) {
+        this.avaliacao = avaliacao;
     }
     
 }
