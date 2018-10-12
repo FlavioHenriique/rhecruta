@@ -23,10 +23,13 @@ public class AvaliacaoService implements AvaliacaoFacade {
     private Avaliacao avaliacao = new Avaliacao();
     @Inject
     private AvaliacaoDaoIF resource;
-    
+    @Inject
+    private CandidatoService candidato;
 
     @Override
     public String salvar() {
+        System.out.println("entrou");
+        System.out.println(avaliacao.toString());
         resource.salvar(avaliacao);
         return "home.xhtml";
     }

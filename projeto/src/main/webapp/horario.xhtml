@@ -4,7 +4,6 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-
     <f:view contentType="text/html">
         <h:head>
             <f:facet name="first">
@@ -12,7 +11,6 @@
                 <title>Rhecruta</title>
             </f:facet>
         </h:head>
-
         <h:body>
             <p:layout fullPage="true">
                 <ui:include src="WEB-INF/topo.xhtml"/>
@@ -25,15 +23,30 @@
                 <p:layoutUnit position="center">
                     <h3>Agendar</h3>
                     <h:form>
+                        <h:messages id="errorMessages" style="color:red;margin:8px;" />
+                        <p:outputLabel for="vagas" value="Vaga:" />
+                        <br></br>
+                        <p:selectOneMenu id="vagas" value="#{avaliacaoService.avaliacao.vaga}" style="width:125px">
+                            <f:selectItems 
+                                itemLabel="#{vaga.title}" 
+                                itemValue="#{vaga}" 
+                                value="#{candidatoService.candidato.interesses}"
+                                var="vaga"/>    
+                        </p:selectOneMenu>
+                        <br></br>
+                        <br></br>
                         Local<br></br>
                         <p:inputText value="#{avaliacaoService.avaliacao.local}" required="true"/>
                         <br></br>
                         <br></br>
-                        Email<br></br>
+                        Horário<br></br>
                         <p:inputText value="#{avaliacaoService.avaliacao.horario}" required="true"/>
                         <br></br>
                         <br></br>
-                        <p:commandButton action="#{agenda.agendar()}" value="Agendar" ajax="false"/>
+                        <p:commandButton 
+                            action="#{avaliacaoService.salvar()}" 
+                            value="Agendar" 
+                            ajax="false"/>
                     </h:form>
                     <!-- falta agendar -->
                     <ui:repeat var="horario" value="#{agenda.agendamentos}">
@@ -50,8 +63,6 @@
                     </ui:repeat>
                 </p:layoutUnit>
             </p:layout>
-
         </h:body>
-
     </f:view>
 </html>

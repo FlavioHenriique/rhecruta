@@ -3,8 +3,6 @@ package br.edu.ifpb.dacrhecruta.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 
-
-
 @Entity
 public class Avaliacao implements Serializable {
 

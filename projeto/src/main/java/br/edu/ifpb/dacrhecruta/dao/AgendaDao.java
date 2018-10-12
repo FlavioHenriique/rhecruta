@@ -8,6 +8,7 @@ package br.edu.ifpb.dacrhecruta.dao;
 import br.edu.ifpb.dacrhecruta.dao.interfaces.AgendaDaoIF;
 import br.edu.ifpb.dacrhecruta.domain.Avaliacao;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -15,6 +16,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author JuliermeH
  */
+@Stateless
 public class AgendaDao implements AgendaDaoIF {
     
     @PersistenceContext
