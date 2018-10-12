@@ -2,6 +2,7 @@ package br.edu.ifpb.dacrhecruta.services;
 
 import br.edu.ifpb.dacrhecruta.dao.interfaces.AvaliadorDaoIF;
 import br.edu.ifpb.dacrhecruta.domain.Avaliador;
+import br.edu.ifpb.dacrhecruta.domain.Avaliador;
 import br.edu.ifpb.dacrhecruta.facade.AvaliadorFacade;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
@@ -31,7 +32,7 @@ public class AvaliadorService implements AvaliadorFacade, Serializable {
 
     @Override
     public String atualizar() {
-        dao.atualizar(avaliador);
+        avaliador = dao.atualizar(avaliador);
         return "home.xhtml";
     }
 
@@ -52,6 +53,12 @@ public class AvaliadorService implements AvaliadorFacade, Serializable {
 
     }
 
+    public String sair() {
+        
+        avaliador = new Avaliador();
+        return "/welcome.xhtml";
+    }
+    
     public Avaliador getAvaliador() {
         return avaliador;
     }
