@@ -9,7 +9,7 @@ import javax.inject.Named;
 
 /**
  *
- * @author Lestat
+ * @author JuliermeH
  */
 @Named("agenda")
 public interface AgendaFacade {
