@@ -65,16 +65,22 @@ public class AvaliadorService implements AvaliadorFacade, Serializable {
         }
     }
 
+    public void darNota(String nota, Avaliacao avaliacao) {
+        avaliacao.setNota(Float.parseFloat(nota));
+        avaliacao.setAvaliador(avaliador);
+        this.avaliacao.atualizar(avaliacao);
+    }
+
     public String sair() {
 
         avaliador = new Avaliador();
         return "/welcome.xhtml";
     }
 
-    public void buscaPorVaga(int id){
-        buscaAvaliacoes= avaliacao.buscaPorVaga(id);
+    public void buscaPorVaga(int id) {
+        buscaAvaliacoes = avaliacao.buscaPorVaga(id);
     }
-    
+
     public void buscaPorCandidato(String email) {
         this.buscaAvaliacoes = avaliacao.buscaPorCandidato(email);
     }

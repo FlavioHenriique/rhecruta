@@ -24,6 +24,7 @@
                         <ui:include src="/WEB-INF/menu_avaliador.xhtml"/>
                     </p:layoutUnit>
                     <p:layoutUnit position="center">
+
                         <h:form>
                             <h4>Buscar avaliações</h4>
                             Filtrar por candidato
@@ -45,32 +46,51 @@
                         </h:form>
                         <br></br>
                         <br></br>
-                        <h:form>
-                            <ui:repeat var="avaliacao" value="#{avaliadorService.buscaAvaliacoes}">
-                                <p:panel style="margin-bottom:20px" header="#{avaliacao.candidato.nome}">
-                                    <h:panelGrid columns="2" cellpadding="10">
+
+                        <ui:repeat var="avaliacao" value="#{avaliadorService.buscaAvaliacoes}">
+                            <p:panel style="margin-bottom:20px" header="#{avaliacao.candidato.nome}">
+                                <h:panelGrid columns="1" cellpadding="10">
+                                    <h:form>
                                         <b>Local: </b>#{avaliacao.local}
                                         <br></br>
                                         <br></br>
                                         <b>Horário: </b>#{avaliacao.horario}
-                                        <br></br>
+                                        <br></br>   
                                         <br></br>
                                         <b>Vaga: </b> #{avaliacao.vaga.title}
+                                        <br></br>
+                                        <br></br>
+                                        <b>Nota:</b> #{avaliacao.nota}
                                         <br></br>
                                         <br></br>
                                         <p:commandButton 
                                             value="Cancelar"
                                             action="#{avaliadorService.cancelarAvaliacao(avaliacao)}"
                                             ajax="false"/>
-                                    </h:panelGrid>
-                                </p:panel>
-                            </ui:repeat>
-                        </h:form>
+                                    </h:form>
+                                    <p:dialog 
+                                        header="Nota da avaliação"
+                                        widgetVar="modal" 
+                                        modal="true" 
+                                        appendTo="@(body)"
+                                        height="100">
+                                        <h:form>
+                                            <p:inputText binding="#{nota}"/>
+                                            <p:commandButton 
+                                                value="Dar nota" 
+                                                action="#{avaliadorService.darNota(nota.value, avaliacao)}"
+                                                ajax="false"/>
+                                        </h:form>
+                                    </p:dialog>
+                                    <p:commandButton value="Dar nota" onclick="PF('modal').show()" />
+
+                                </h:panelGrid>
+                            </p:panel>
+                        </ui:repeat>
+
                     </p:layoutUnit>
                 </p:layout>
-
             </h:body>
-
         </f:view>
     </h:body>
 </html>

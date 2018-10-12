@@ -60,6 +60,7 @@ public class Avaliacao implements Serializable {
 
     public void setNota(float nota) {
         this.nota = nota;
+        this.aprovacao = (nota >= 7);
     }
 
     public String getHorario() {
