@@ -39,12 +39,17 @@ public class CandidatoDao implements CandidatoDaoIF {
     }
 
     @Override
+    public Candidato buscar(String email) {
+        return em.find(Candidato.class, email);
+    }
+
+    @Override
     public Candidato buscar(Candidato obj) {
         Candidato candidato = em.find(Candidato.class, obj.getEmail());
-        if(candidato!= null){
+        if (candidato != null) {
             candidato.setInteresses(
-                jobs.interessesCandidato(candidato.getVagas())
-        );
+                    jobs.interessesCandidato(candidato.getVagas())
+            );
         }
         return candidato;
     }
@@ -59,13 +64,14 @@ public class CandidatoDao implements CandidatoDaoIF {
         em.merge(obj);
         return this.buscar(obj);
     }
+
     @Override
     public Candidato autenticar(String email, String senha) {
         Candidato c = new Candidato();
         c.setEmail(email);
         c = buscar(c);
-        
-        if(c != null && c.getSenha().equals(senha)){
+
+        if (c != null && c.getSenha().equals(senha)) {
             return c;
         }
         return null;

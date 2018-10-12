@@ -7,7 +7,6 @@ package br.edu.ifpb.dacrhecruta.services;
 
 import br.edu.ifpb.dacrhecruta.dao.interfaces.AvaliacaoDaoIF;
 import br.edu.ifpb.dacrhecruta.domain.Avaliacao;
-import br.edu.ifpb.dacrhecruta.domain.Candidato;
 import br.edu.ifpb.dacrhecruta.facade.AvaliacaoFacade;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,6 @@ import javax.annotation.PostConstruct;
 import javax.el.ELContext;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.annotation.ManagedProperty;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;

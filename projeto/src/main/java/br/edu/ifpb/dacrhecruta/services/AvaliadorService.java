@@ -1,10 +1,13 @@
 package br.edu.ifpb.dacrhecruta.services;
 
+import br.edu.ifpb.dacrhecruta.dao.interfaces.AvaliacaoDaoIF;
 import br.edu.ifpb.dacrhecruta.dao.interfaces.AvaliadorDaoIF;
+import br.edu.ifpb.dacrhecruta.domain.Avaliacao;
 import br.edu.ifpb.dacrhecruta.domain.Avaliador;
 import br.edu.ifpb.dacrhecruta.domain.Avaliador;
 import br.edu.ifpb.dacrhecruta.facade.AvaliadorFacade;
 import java.io.Serializable;
+import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -16,6 +19,9 @@ public class AvaliadorService implements AvaliadorFacade, Serializable {
     private Avaliador avaliador = new Avaliador();
     @Inject
     private AvaliadorDaoIF dao;
+    @Inject
+    AvaliacaoDaoIF avaliacao;
+    private List<Avaliacao> buscaAvaliacoes;
 
     @Override
     public String salvar() {
@@ -50,21 +56,36 @@ public class AvaliadorService implements AvaliadorFacade, Serializable {
             avaliador = new Avaliador();
             return "welcome.xhtml";
         }
-
     }
 
     public String sair() {
-        
+
         avaliador = new Avaliador();
         return "/welcome.xhtml";
     }
-    
+
+    public void buscaPorCandidato(String email) {
+        System.out.println("bind");
+        System.out.println(email);
+        this.buscaAvaliacoes = avaliacao.buscaPorCandidato(email);
+        
+        
+    }
+
     public Avaliador getAvaliador() {
         return avaliador;
     }
 
     public void setAvaliador(Avaliador avaliador) {
         this.avaliador = avaliador;
+    }
+
+    public List<Avaliacao> getBuscaAvaliacoes() {
+        return buscaAvaliacoes;
+    }
+
+    public void setBuscaAvaliacoes(List<Avaliacao> buscaAvaliacoes) {
+        this.buscaAvaliacoes = buscaAvaliacoes;
     }
 
 }

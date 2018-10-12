@@ -14,4 +14,5 @@ import br.edu.ifpb.dacrhecruta.domain.Candidato;
  */
 public interface CandidatoDaoIF extends IFDaoGeneric<Candidato>{
     Candidato autenticar(String email, String senha);
+    Candidato buscar(String email);
 }

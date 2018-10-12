@@ -8,4 +8,5 @@ import java.util.List;
 public interface AvaliacaoDaoIF extends IFDaoGeneric<Avaliacao> {
 
     public List<Avaliacao> buscar(Candidato candidato);
+    public List<Avaliacao> buscaPorCandidato(String email);
 }

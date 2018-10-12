@@ -1,6 +1,7 @@
 package br.edu.ifpb.dacrhecruta.dao;
 
 import br.edu.ifpb.dacrhecruta.dao.interfaces.AvaliacaoDaoIF;
+import br.edu.ifpb.dacrhecruta.dao.interfaces.CandidatoDaoIF;
 import br.edu.ifpb.dacrhecruta.domain.Avaliacao;
 import br.edu.ifpb.dacrhecruta.domain.Candidato;
 import br.edu.ifpb.dacrhecruta.pyjobs.BuscaPyJobs;
@@ -18,6 +19,8 @@ public class AvaliacaoDao implements AvaliacaoDaoIF {
     private EntityManager em;
     @Inject
     private BuscaPyJobs jobs;
+    @Inject
+    private CandidatoDaoIF candidatoDao;
     
     @Override
     public void salvar(Avaliacao obj) {
@@ -32,6 +35,7 @@ public class AvaliacaoDao implements AvaliacaoDaoIF {
                 .setParameter("candidato", candidato)
                 .getResultList();
         lista.forEach(a -> a.setVaga(jobs.buscaVaga(a.getCodVaga())));
+        
         return lista;
     }
     
@@ -62,4 +66,9 @@ public class AvaliacaoDao implements AvaliacaoDaoIF {
         em.merge(obj);
         return this.buscar(obj);
     }
+    
+    public List<Avaliacao> buscaPorCandidato(String email){
+        return buscar(candidatoDao.buscar(email));
+    }
+    
 }
