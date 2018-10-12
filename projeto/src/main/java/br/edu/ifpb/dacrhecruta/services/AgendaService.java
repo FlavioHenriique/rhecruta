@@ -5,9 +5,11 @@
  */
 package br.edu.ifpb.dacrhecruta.services;
 
+import br.edu.ifpb.dacrhecruta.dao.interfaces.AgendaDaoIF;
 import br.edu.ifpb.dacrhecruta.domain.Avaliacao;
 import br.edu.ifpb.dacrhecruta.facade.AgendaFacade;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -19,20 +21,25 @@ import javax.inject.Named;
 public class AgendaService implements AgendaFacade {
     
     private Avaliacao avaliacao = new Avaliacao();
+    @Inject
+    private AgendaDaoIF resource;
 
     @Override
     public String agendar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        resource.salvar(avaliacao);
+        return "home.xhtml";
     }
 
     @Override
     public String agendamentos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        resource.buscar();
+        return "home.xhtml";
     }
 
     @Override
     public String cancelar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        resource.deletar(avaliacao);
+        return "home.xhtml";
     }
 
     /* Get e Set */
