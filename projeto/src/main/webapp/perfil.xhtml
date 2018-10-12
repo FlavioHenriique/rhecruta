@@ -16,7 +16,7 @@
             <p:layout fullPage="true">
                 <ui:include src="WEB-INF/topo.xhtml"/>
                 <ui:include src="WEB-INF/rodape.xhtml"/>
-                 
+
                 <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
                     <ui:include src="WEB-INF/menu.xhtml"/>
                 </p:layoutUnit>
@@ -37,6 +37,22 @@
                         <br></br>
                         <p:commandButton action="#{candidatoService.atualizar()}" value="Atualizar" ajax="false"/>
                     </h:form>
+                    <h:form enctype="multipart/form-data">
+                        <br></br>
+                        Adicionar currículo
+                        <br></br>
+                        <p:fileUpload fileUploadListener="#{candidatoService.doUpload}" 
+                                      label="Buscar..." auto="true" immediate="true"
+                                      allowTypes="/(\.|\/)(pdf)$/"/>
+
+                        <br></br>
+                        <br></br>
+                        <p:commandButton 
+                            value="Remover currículo" 
+                            action="#{candidatoService.removerCurriculo()}" 
+                            ajax="false"/>
+                    </h:form>
+
                 </p:layoutUnit>
             </p:layout>
 
