@@ -10,11 +10,10 @@ import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Lestat
+ * @author JuliermeH
  */
 @Named
 @SessionScoped

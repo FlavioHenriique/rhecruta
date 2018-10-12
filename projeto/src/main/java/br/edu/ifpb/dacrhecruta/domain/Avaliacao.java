@@ -33,6 +33,13 @@ public class Avaliacao implements Serializable {
         this.candidato = candidato;
         this.vaga = vaga;
     }
+    
+    public Avaliacao(String horario, String local, Candidato candidato, int vaga) {
+        this.horario = horario;
+        this.local = local;
+        this.candidato = candidato;
+        this.vaga = vaga;
+    }
 
     public int getId() {
         return id;

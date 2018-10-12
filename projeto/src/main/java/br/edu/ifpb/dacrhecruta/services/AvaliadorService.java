@@ -10,7 +10,7 @@ import br.edu.ifpb.dacrhecruta.resource.AvaliadorResource;
 
 /**
  *
- * @author Lestat
+ * @author JuliermeH
  */
 public class AvaliadorService implements AvaliadorFacade {
     
