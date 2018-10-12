@@ -1,9 +1,14 @@
 package br.edu.ifpb.dacrhecruta.services;
 
+import br.edu.ifpb.dacrhecruta.dao.interfaces.CandidatoDaoIF;
 import br.edu.ifpb.dacrhecruta.dao.interfaces.GerenteDaoIF;
+import br.edu.ifpb.dacrhecruta.domain.Candidato;
 import br.edu.ifpb.dacrhecruta.domain.Gerente;
 import br.edu.ifpb.dacrhecruta.facade.GerenteFacade;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -19,6 +24,14 @@ public class GerenteService implements GerenteFacade, Serializable {
     private Gerente gerente = new Gerente();
     @Inject
     private GerenteDaoIF dao;
+    @Inject
+    private CandidatoDaoIF daoCandidato;
+    private List<Candidato> candidatos;
+
+    @PostConstruct
+    public void init() {
+        candidatos = new ArrayList<>();
+    }
 
     @Override
     public String salvar() {
@@ -28,7 +41,7 @@ public class GerenteService implements GerenteFacade, Serializable {
 
     @Override
     public String buscarGerente() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "";
     }
 
     @Override
@@ -39,7 +52,7 @@ public class GerenteService implements GerenteFacade, Serializable {
 
     @Override
     public String deletar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "";
     }
 
     @Override
@@ -59,13 +72,25 @@ public class GerenteService implements GerenteFacade, Serializable {
         gerente = new Gerente();
         return "/welcome.xhtml";
     }
-    
+
+    public void buscaPorCandidato(String email) {
+        candidatos.add(daoCandidato.buscar(email));
+    }
+
     public Gerente getGerente() {
         return gerente;
     }
 
     public void setGerente(Gerente gerente) {
         this.gerente = gerente;
+    }
+
+    public List<Candidato> getCandidatos() {
+        return candidatos;
+    }
+
+    public void setCandidatos(List<Candidato> candidatos) {
+        this.candidatos = candidatos;
     }
 
 }

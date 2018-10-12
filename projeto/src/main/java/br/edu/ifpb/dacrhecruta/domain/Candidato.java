@@ -1,10 +1,12 @@
 package br.edu.ifpb.dacrhecruta.domain;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.primefaces.model.StreamedContent;
 
 @Entity
 public class Candidato implements Serializable {
@@ -13,6 +15,8 @@ public class Candidato implements Serializable {
     private String email;
     private String senha;
     private String curriculo;
+    @Transient
+    private StreamedContent content;
     private String nome;
     @ElementCollection
     private List<Integer> vagas;
@@ -93,6 +97,14 @@ public class Candidato implements Serializable {
 
     public void setInteresses(List<Vaga> interesses) {
         this.interesses = interesses;
+    }
+
+    public StreamedContent getContent() {
+        return content;
+    }
+
+    public void setContent(StreamedContent content) {
+        this.content = content;
     }
 
     @Override

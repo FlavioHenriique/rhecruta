@@ -8,12 +8,22 @@ package br.edu.ifpb.dacrhecruta.dao;
 import br.edu.ifpb.dacrhecruta.dao.interfaces.CandidatoDaoIF;
 import br.edu.ifpb.dacrhecruta.domain.Candidato;
 import br.edu.ifpb.dacrhecruta.pyjobs.BuscaPyJobs;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Base64;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.apache.commons.io.FileUtils;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 /**
  * @author aguirresabino
@@ -35,12 +45,15 @@ public class CandidatoDao implements CandidatoDaoIF {
     public List<Candidato> buscar() {
         List<Candidato> candidatos = em.createQuery("SELECT c FROM Candidato c")
                 .getResultList();
+
         return candidatos;
     }
 
     @Override
     public Candidato buscar(String email) {
-        return em.find(Candidato.class, email);
+        Candidato c = em.find(Candidato.class, email);
+        c.setContent(getCurriculo(c.getCurriculo()));
+        return c;
     }
 
     @Override
@@ -51,6 +64,7 @@ public class CandidatoDao implements CandidatoDaoIF {
                     jobs.interessesCandidato(candidato.getVagas())
             );
         }
+        candidato.setContent(getCurriculo(candidato.getCurriculo()));
         return candidato;
     }
 
@@ -74,6 +88,27 @@ public class CandidatoDao implements CandidatoDaoIF {
         if (c != null && c.getSenha().equals(senha)) {
             return c;
         }
+        return null;
+    }
+
+    private StreamedContent getCurriculo(String curriculo) {
+        File file = new File("curriculo.pdf");
+        if (curriculo != null) {
+            byte[] bytes = Base64.getDecoder().decode(curriculo);
+            try {
+                FileUtils.writeByteArrayToFile(file, bytes);
+                StreamedContent content = new DefaultStreamedContent(
+                        new FileInputStream(file),
+                        "application/pdf",
+                        "curriculo.pdf"
+                );
+                return content;
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+        }
+
         return null;
     }
 }
