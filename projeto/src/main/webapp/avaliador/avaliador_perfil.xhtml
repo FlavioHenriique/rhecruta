@@ -34,6 +34,14 @@
                             <br></br>
                             <p:commandButton action="#{avaliadorService.atualizar()}" value="Atualizar" ajax="false"/>
                         </h:form>
+                        <br></br>
+                        <h:form>
+                            <p:commandButton
+                                ajax="false"
+                                value="Remover esta conta"
+                                action="#{avaliadorService.deletar()}"
+                                />
+                        </h:form>
                     </p:layoutUnit>
                 </p:layout>
 

@@ -24,6 +24,7 @@ public class AvaliacaoDao implements AvaliacaoDaoIF {
 
     @Override
     public void salvar(Avaliacao obj) {
+        obj.setCandidato(candidatoDao.buscar(obj.getCandidato()));
         em.persist(obj);
     }
 

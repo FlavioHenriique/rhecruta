@@ -10,8 +10,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 @Named
 @SessionScoped
@@ -44,8 +46,8 @@ public class AvaliadorService implements AvaliadorFacade, Serializable {
 
     @Override
     public String deletar() {
-
-        return "welcome.xhtml";
+        dao.deletar(avaliador);
+        return sair();
     }
 
     public String cancelarAvaliacao(Avaliacao avaliacao) {
@@ -71,9 +73,13 @@ public class AvaliadorService implements AvaliadorFacade, Serializable {
     }
 
     public String sair() {
-
+        HttpSession session = (HttpSession) FacesContext
+                .getCurrentInstance()
+                .getExternalContext()
+                .getSession(true);
+        session.invalidate();
         avaliador = new Avaliador();
-        return "/welcome.xhtml";
+        return "/faces/welcome.xhtml";
     }
 
     public void buscaPorVaga(int id) {
