@@ -8,6 +8,7 @@ services:
     rhecruta-app-dev:
         image: projeto-dac/rhecruta-app-dev
         build: .
+        restart: always
         ports:
           - "8081:8080"
           - "4849:4848"
