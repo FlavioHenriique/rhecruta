@@ -1,0 +1,86 @@
+page-login {
+    html {
+      $font-size: 50px;
+      @include font-size-map($html-font-size);
+    }
+  
+    p {
+      @include font-size-map($paragraph-font-size);
+    }
+  
+    .item {
+      background: #212121;
+    }
+  
+    .scroll-content {
+      overflow: auto;
+      background: #212121;
+    }
+  
+    @media screen and (max-height : 649px) {
+      img {
+        //height: 15%;
+        width: auto;
+        margin: auto;
+        display: block;
+      }
+
+      .inputLogin {
+        border: none;
+        border-radius: 7px;
+        background: #fff;
+        margin-top: 20px;
+      }
+  
+      .text-input {
+        font-size: 20px;
+        font-weight: bolder;
+        border: none;
+        text-align: center;
+      }
+  
+      .btnEntrar {
+        border-radius: 34px;
+        margin-top: 10%;
+        height: 55px;
+        font-size: 24px;
+        font-weight: bolder;
+      }
+    }
+  
+    @media screen and (min-height : 650px) {
+      img {
+        //height: 15%;
+        width: auto;
+        margin: auto;
+        display: block;
+      }
+  
+      .formLogin {
+        margin-top: 15%;
+      }
+  
+      .inputLogin {
+        border: none;
+        border-radius: 7px;
+        background: #fff;
+        margin-top: 20px;
+      }
+  
+      .text-input {
+        font-size: 20px;
+        font-weight: bolder;
+        border: none;
+        text-align: center;
+      }
+  
+      .btnEntrar {
+        border-radius: 34px;
+        margin-top: 10%;
+        height: 55px;
+        font-size: 24px;
+        font-weight: bolder;
+      }
+    }
+  }
+  
