@@ -32,18 +32,22 @@ CREATE TABLE AVALIACAO(
 	FOREIGN KEY (candidato_email) REFERENCES Candidato(email)
 );
 
-INSERT INTO CANDIDATO (nome,email,senha) 
-VALUES ('Flavio','flavio@gmail.com','flavio');
+INSERT INTO CANDIDATO (nome,email,senha,curriculo) 
+VALUES ('Flavio','flavio@gmail.com','1234','curriculo1');
 
-INSERT INTO CANDIDATO (nome,email,senha) 
-VALUES ('Julierme','julierme@gmail.com','1234');
+INSERT INTO CANDIDATO (nome,email,senha,curriculo) 
+VALUES ('Julierme','julierme@gmail.com','1234','curriculo2');
 
-INSERT INTO CANDIDATO (nome,email,senha) 
-VALUES ('Aguirre','aguirre@gmail.com','1234');
+INSERT INTO CANDIDATO (nome,email,senha,curriculo) 
+VALUES ('Aguirre','aguirre@gmail.com','1234','curriculo3');
+
 
 INSERT INTO GERENTE(nome,codigo)
-VALUES ('job','1111');
+VALUES ('Gerente1','1111');
 
 INSERT INTO AVALIADOR(nome,codigo)
-VALUES ('ari','1111');
+VALUES ('Avaliador1','1111');
+
+INSERT INTO 
+
 

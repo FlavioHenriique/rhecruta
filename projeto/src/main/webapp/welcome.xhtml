@@ -54,6 +54,17 @@
                         <br></br>
                         <p:commandButton action="#{candidatoService.salvar()}" value="Cadastrar" ajax="false"/>
                     </h:form>
+                    <br></br>
+                    <h:form>
+                        <h4>Receber Newsweek</h4>
+                        Digite seu email:
+                        <br></br>
+                        <p:inputText value="#{newsweekService.newsweek.email}"/>
+                        <p:commandButton 
+                            value="Cadastrar" 
+                            action="#{newsweekService.receber()}"
+                            ajax="false"/>
+                    </h:form>
                 </p:layoutUnit>
 
             </p:layout>

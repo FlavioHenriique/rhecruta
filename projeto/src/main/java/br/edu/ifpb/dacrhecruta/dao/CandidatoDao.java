@@ -2,10 +2,12 @@ package br.edu.ifpb.dacrhecruta.dao;
 
 import br.edu.ifpb.dacrhecruta.dao.interfaces.CandidatoDaoIF;
 import br.edu.ifpb.dacrhecruta.domain.Candidato;
+import br.edu.ifpb.dacrhecruta.domain.Vaga;
 import br.edu.ifpb.dacrhecruta.pyjobs.BuscaPyJobs;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -104,7 +106,7 @@ public class CandidatoDao implements CandidatoDaoIF {
                         "application/pdf",
                         "curriculo.pdf"
                 );
-                
+
                 return content;
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -112,4 +114,8 @@ public class CandidatoDao implements CandidatoDaoIF {
         }
         return null;
     }
+
+    
+
+    
 }

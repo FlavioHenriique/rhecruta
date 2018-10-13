@@ -1,8 +1,5 @@
-<<<<<<< HEAD
+
 FROM postgres:9.5.10
-=======
-FROM postgres:10.5
->>>>>>> develop
 
 ENV POSTGRES_USER postgres
 ENV POSTGRES_PASSWORD rhecruta
