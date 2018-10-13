@@ -48,7 +48,8 @@ public class GerenteService implements GerenteFacade, Serializable {
 
     @Override
     public String deletar() {
-        return "";
+        dao.deletar(gerente);
+        return "/welcome.xhtml";
     }
 
     @Override

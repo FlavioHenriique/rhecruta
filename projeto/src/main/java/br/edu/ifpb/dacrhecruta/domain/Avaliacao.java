@@ -14,11 +14,11 @@ public class Avaliacao implements Serializable {
     private String local;
     private boolean aprovacao;
     private boolean classificacao;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Gerente gerente;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Avaliador avaliador;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Candidato candidato;
     private int codVaga;
     @Transient

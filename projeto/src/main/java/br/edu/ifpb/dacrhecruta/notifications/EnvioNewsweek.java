@@ -15,9 +15,9 @@ public class EnvioNewsweek {
     private NotificacoesEmail emails;
 
     // Para testes
-    //@Schedule(second = "1", hour = "*", minute = "*", persistent = false)
+    @Schedule(second = "1", hour = "*", minute = "*", persistent = false)
     // Semanal
-    @Schedule(second = "1", hour = "11", minute = "43", persistent = false, dayOfWeek = "Sat")
+    //@Schedule(second = "1", hour = "11", minute = "43", persistent = false, dayOfWeek = "Sat")
     public void enviarNewsweek() {
         System.out.println("enviando newsweek semanal");
         emails.newsweek(dao.vagasNewsweek(), dao.emailsNewsweek());

@@ -40,7 +40,7 @@ public class GerenteDao implements GerenteDaoIF {
 
     @Override
     public void deletar(Gerente obj) {
-        em.remove(obj);
+        em.remove(buscar(obj));
     }
 
     @Override

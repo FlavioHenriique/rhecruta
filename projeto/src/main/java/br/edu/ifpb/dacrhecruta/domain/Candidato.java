@@ -18,6 +18,7 @@ public class Candidato implements Serializable {
     @Transient
     private StreamedContent content;
     private String nome;
+    
     @ElementCollection
     private List<Integer> vagas;
     @Transient

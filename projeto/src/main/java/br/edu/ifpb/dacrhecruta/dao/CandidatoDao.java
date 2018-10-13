@@ -53,14 +53,14 @@ public class CandidatoDao implements CandidatoDaoIF {
             candidato.setInteresses(
                     jobs.interessesCandidato(candidato.getVagas())
             );
+            candidato.setContent(getCurriculo(candidato.getCurriculo()));
         }
-        candidato.setContent(getCurriculo(candidato.getCurriculo()));
         return candidato;
     }
 
     @Override
     public void deletar(Candidato obj) {
-        em.remove(obj);
+        em.remove(buscar(obj));
     }
 
     @Override
@@ -115,7 +115,4 @@ public class CandidatoDao implements CandidatoDaoIF {
         return null;
     }
 
-    
-
-    
 }

@@ -37,7 +37,7 @@ public class AvaliadorDao implements AvaliadorDaoIF{
 
     @Override
     public void deletar(Avaliador obj) {
-        em.remove(obj);
+        em.remove(buscar(obj));
     }
 
     @Override

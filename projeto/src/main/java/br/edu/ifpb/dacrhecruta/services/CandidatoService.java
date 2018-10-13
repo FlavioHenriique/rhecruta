@@ -11,6 +11,7 @@ import java.util.Base64;
 import javax.ejb.Schedule;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
@@ -30,8 +31,6 @@ public class CandidatoService implements CandidatoFacade, Serializable {
 
     public CandidatoService() {
     }
-
-    
 
     @Override
     public String autenticar() {
@@ -65,7 +64,8 @@ public class CandidatoService implements CandidatoFacade, Serializable {
     @Override
     public String deletar() {
         dao.deletar(candidato);
-        return "home.xhtml";
+        candidato = new Candidato();
+        return "welcome.xhtml";
     }
 
     public void adicionarInteresse(Vaga interesse) {
@@ -99,6 +99,11 @@ public class CandidatoService implements CandidatoFacade, Serializable {
     public String sair() {
 
         candidato = new Candidato();
+        HttpSession session = (HttpSession) FacesContext
+                .getCurrentInstance()
+                .getExternalContext()
+                .getSession(true);
+        session.invalidate();
         return "welcome.xhtml";
     }
 
