@@ -14,10 +14,10 @@ public class EnvioNewsweek {
     @Inject
     private NotificacoesEmail emails;
     
-    @Schedule(second = "1", hour = "*", minute = "*", persistent = false)
-    //@Schedule(second = "30", hour = "7", minute = "10", persistent = false, dayOfWeek = "Mon")
+    //@Schedule(second = "1", hour = "*", minute = "*", persistent = false)
+    @Schedule(second = "1", hour = "11", minute = "43", persistent = false, dayOfWeek = "Sat")
     public void enviarNewsweek() {
-        System.out.println("enviando newsweek");
+        System.out.println("enviando newsweek semanal");
         emails.newsweek(dao.vagasNewsweek(), dao.emailsNewsweek());
     }
 }
