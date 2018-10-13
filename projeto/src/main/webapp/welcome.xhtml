@@ -38,23 +38,58 @@
                 </p:layoutUnit>
                 <ui:include src="WEB-INF/rodape.xhtml"/>
                 <p:layoutUnit position="center">
-                    <h3>Cadastro de candidato</h3>
-                    <h:form>
-                        Nome<br></br>
-                        <p:inputText value="#{candidatoService.candidato.nome}" required="true"/>
+                    <table style="width: 100%">
+                        <tr>
+                            <td>
+                                <h3>Cadastro de candidato</h3>
+                        <h:form>
+                            Nome<br></br>
+                            <p:inputText value="#{candidatoService.candidato.nome}" required="true"/>
+                            <br></br>
+                            <br></br>
+                            Email<br></br>
+                            <p:inputText value="#{candidatoService.candidato.email}" required="true"/>
+                            <br></br>
+                            <br></br>
+                            Senha<br></br>
+                            <p:password value="#{candidatoService.candidato.senha}" required="true"/>
+                            <br></br>
+                            <br></br>
+                            <p:commandButton action="#{candidatoService.salvar()}" value="Cadastrar" ajax="false"/>
+                        </h:form>
                         <br></br>
-                        <br></br>
-                        Email<br></br>
-                        <p:inputText value="#{candidatoService.candidato.email}" required="true"/>
-                        <br></br>
-                        <br></br>
-                        Senha<br></br>
-                        <p:password value="#{candidatoService.candidato.senha}" required="true"/>
-                        <br></br>
-                        <br></br>
-                        <p:commandButton action="#{candidatoService.salvar()}" value="Cadastrar" ajax="false"/>
-                    </h:form>
-                    <br></br>
+                        </td>
+                        <td>
+                            <h3>Cadastro de gerente</h3>
+                        <h:form>
+                            Nome<br></br>
+                            <p:inputText value="#{gerenteService.gerente.nome}" required="true"/>
+                            <br></br>
+                            <br></br>
+                            Código<br></br>
+                            <p:inputText value="#{gerenteService.gerente.codigo}" required="true"/>
+                            <br></br>
+                            <br></br>
+                            <p:commandButton action="#{gerenteService.salvar()}" value="Cadastrar" ajax="false"/>
+                        </h:form>
+                        </td>
+                        <td>
+                            <h3>Cadastro de avaliador</h3>
+                        <h:form>
+                            Nome<br></br>
+                            <p:inputText value="#{avaliadorService.avaliador.nome}" required="true"/>
+                            <br></br>
+                            <br></br>
+                            Código<br></br>
+                            <p:inputText value="#{avaliadorService.avaliador.codigo}" required="true"/>
+                            <br></br>
+                            <br></br>
+                            <p:commandButton action="#{avaliadorService.salvar()}" value="Cadastrar" ajax="false"/>
+                        </h:form>
+                        </td>
+                        </tr>
+                    </table>
+
                     <h:form>
                         <h4>Receber Newsweek</h4>
                         Digite seu email:

@@ -27,14 +27,13 @@ public class AvaliadorService implements AvaliadorFacade, Serializable {
     @Override
     public String salvar() {
         dao.salvar(avaliador);
-        avaliador = new Avaliador();
-        return "home.xhtml";
+        return "faces/avaliador/home.xhtml";
     }
 
     @Override
     public String buscarAvaliador() {
 
-        return "home.xhtml";
+        return "avaliador/home.xhtml";
     }
 
     @Override
@@ -46,7 +45,7 @@ public class AvaliadorService implements AvaliadorFacade, Serializable {
     @Override
     public String deletar() {
 
-        return "home.xhtml";
+        return "welcome.xhtml";
     }
 
     public String cancelarAvaliacao(Avaliacao avaliacao) {
