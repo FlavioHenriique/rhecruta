@@ -40,7 +40,6 @@ public class CandidatoDao implements CandidatoDaoIF {
     @Override
     public Candidato buscar(String email) {
         Candidato c = em.find(Candidato.class, email);
-        System.out.println(c.toString());
         c.setContent(getCurriculo(c.getCurriculo()));
         return c;
     }
@@ -93,7 +92,8 @@ public class CandidatoDao implements CandidatoDaoIF {
         return lista;
     }
 
-    private StreamedContent getCurriculo(String curriculo) {
+    @Override
+    public StreamedContent getCurriculo(String curriculo) {
         File file = new File("curriculo.pdf");
         if (curriculo != null) {
             byte[] bytes = Base64.getDecoder().decode(curriculo);
@@ -104,6 +104,7 @@ public class CandidatoDao implements CandidatoDaoIF {
                         "application/pdf",
                         "curriculo.pdf"
                 );
+                
                 return content;
             } catch (IOException ex) {
                 ex.printStackTrace();

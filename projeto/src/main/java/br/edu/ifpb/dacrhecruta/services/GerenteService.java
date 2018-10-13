@@ -1,8 +1,8 @@
 package br.edu.ifpb.dacrhecruta.services;
 
-import br.edu.ifpb.dacrhecruta.dao.interfaces.CandidatoDaoIF;
+import br.edu.ifpb.dacrhecruta.dao.interfaces.AvaliacaoDaoIF;
 import br.edu.ifpb.dacrhecruta.dao.interfaces.GerenteDaoIF;
-import br.edu.ifpb.dacrhecruta.domain.Candidato;
+import br.edu.ifpb.dacrhecruta.domain.Avaliacao;
 import br.edu.ifpb.dacrhecruta.domain.Gerente;
 import br.edu.ifpb.dacrhecruta.facade.GerenteFacade;
 import java.io.Serializable;
@@ -13,10 +13,6 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-/**
- *
- * @author JuliermeH
- */
 @Named
 @SessionScoped
 public class GerenteService implements GerenteFacade, Serializable {
@@ -25,12 +21,12 @@ public class GerenteService implements GerenteFacade, Serializable {
     @Inject
     private GerenteDaoIF dao;
     @Inject
-    private CandidatoDaoIF daoCandidato;
-    private List<Candidato> candidatos;
+    private AvaliacaoDaoIF daoAvaliacao;
+    private List<Avaliacao> avaliacoes;
 
     @PostConstruct
     public void init() {
-        candidatos = new ArrayList<>();
+        avaliacoes = new ArrayList<>();
     }
 
     @Override
@@ -57,7 +53,6 @@ public class GerenteService implements GerenteFacade, Serializable {
 
     @Override
     public String autenticar() {
-        System.out.println("entrou");
         gerente = dao.autenticar(gerente.getCodigo());
         if (gerente != null) {
             return "gerente/home.xhtml";
@@ -68,21 +63,28 @@ public class GerenteService implements GerenteFacade, Serializable {
     }
 
     public String sair() {
-        System.out.println("sair");
         gerente = new Gerente();
         return "/welcome.xhtml";
     }
 
     public void buscaPorCandidato(String email) {
-        candidatos = new ArrayList<>();
-        candidatos.add(daoCandidato.buscar(email));
+        avaliacoes = new ArrayList<>();
+        avaliacoes = daoAvaliacao.buscaPorCandidato(email);
+
     }
 
-    public void buscaPorVaga(int id){
-        candidatos = new ArrayList<>();
-        candidatos = daoCandidato.buscaPorVagas(id);
+    public void buscaPorVaga(int id) {
+        avaliacoes = new ArrayList<>();
+        avaliacoes = daoAvaliacao.buscaPorVaga(id);
     }
-    
+
+    public String resultado(Avaliacao avaliacao, boolean classificacao) {
+        avaliacao.setClassificacao(classificacao);
+        daoAvaliacao.atualizar(avaliacao);
+        this.avaliacoes = new ArrayList<>();
+        return "gerente/curriculos.xhtml";
+    }
+
     public Gerente getGerente() {
         return gerente;
     }
@@ -91,12 +93,12 @@ public class GerenteService implements GerenteFacade, Serializable {
         this.gerente = gerente;
     }
 
-    public List<Candidato> getCandidatos() {
-        return candidatos;
+    public List<Avaliacao> getAvaliacoes() {
+        return avaliacoes;
     }
 
-    public void setCandidatos(List<Candidato> candidatos) {
-        this.candidatos = candidatos;
+    public void setAvaliacoes(List<Avaliacao> avaliacoes) {
+        this.avaliacoes = avaliacoes;
     }
 
 }

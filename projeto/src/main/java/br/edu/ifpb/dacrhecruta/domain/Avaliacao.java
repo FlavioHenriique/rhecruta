@@ -13,6 +13,7 @@ public class Avaliacao implements Serializable {
     private String horario;
     private String local;
     private boolean aprovacao;
+    private boolean classificacao;
     @ManyToOne
     private Gerente gerente;
     @ManyToOne
@@ -81,6 +82,14 @@ public class Avaliacao implements Serializable {
 
     public boolean isAprovacao() {
         return aprovacao;
+    }
+
+    public boolean isClassificacao() {
+        return classificacao;
+    }
+
+    public void setClassificacao(boolean classificacao) {
+        this.classificacao = classificacao;
     }
 
     public void setAprovacao(boolean aprovacao) {

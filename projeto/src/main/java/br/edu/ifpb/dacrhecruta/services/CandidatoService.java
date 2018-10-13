@@ -66,7 +66,6 @@ public class CandidatoService implements CandidatoFacade, Serializable {
     }
     
     public void adicionarInteresse(Vaga interesse) {
-        System.out.println("adicionar");
         candidato.adicionarInteresse(interesse);
         candidato = dao.atualizar(candidato);
         //   return "vagas.xhtml";
@@ -90,12 +89,12 @@ public class CandidatoService implements CandidatoFacade, Serializable {
     
     public void removerCurriculo() {
         candidato.setCurriculo(null);
-        System.out.println(candidato.toString());
+        
         candidato = dao.atualizar(candidato);
     }
     
     public String sair() {
-        System.out.println("sair");
+        
         candidato = new Candidato();
         return "welcome.xhtml";
     }

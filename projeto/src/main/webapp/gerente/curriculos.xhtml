@@ -50,21 +50,53 @@
                     </h:form>
                     <br></br>
                     <br></br>
-                    <ui:repeat var="candidato" value="#{gerenteService.candidatos}">
+                    <ui:repeat var="avaliacao" value="#{gerenteService.avaliacoes}">
                         <h:form>
-                            #{candidato.nome}<br></br>
+                            #{avaliacao.candidato.nome}<br></br>
+                            <b>Nota da entrevista:</b> #{avaliacao.nota}
+                            <br></br>
                             <p:commandButton 
                                 value="Baixar currículo" 
                                 ajax="false" 
                                 onclick="PrimeFaces.monitorDownload(start, stop);" 
                                 icon="ui-icon-arrowthick-1-s">
-                                <p:fileDownload value="#{candidato.content}" />
+                                <p:fileDownload value="#{avaliacao.candidato.content}" />
                             </p:commandButton>
-                            <br></br>
-                            <br></br>
                         </h:form>
-                    </ui:repeat>
+                        <br></br>
+                        <p:commandButton 
+                            value="Determinar resultado"
+                            onclick="PF('modal').show()"
+                            />
+                        <p:dialog 
+                            header="Resultado da análise de currículos"
+                            widgetVar="modal" 
+                            modal="true" 
+                            appendTo="@(body)"
+                            height="100">
+                            <h:form>
+                                <p:selectOneMenu binding="#{classificacao}">
+                                    <f:selectItem 
+                                        itemLabel="Classificado"
+                                        itemValue="true"
+                                        />
+                                    <f:selectItem 
+                                        itemLabel="Desclassificado"
+                                        itemValue="false"/>
+                                </p:selectOneMenu>
+                                <br></br>
+                                <br></br>
+                                <p:commandButton 
+                                    value="Resultado" 
+                                    action="#{gerenteService.resultado(avaliacao,classificacao.value)}"
+                                    ajax="false"/>
+                            </h:form>
 
+                        </p:dialog>
+                        <br></br>
+                        <br></br>
+
+                    </ui:repeat>
                 </p:layoutUnit>
             </p:layout>
         </h:body>

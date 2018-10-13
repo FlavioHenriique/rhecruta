@@ -74,6 +74,12 @@ public class AvaliacaoDao implements AvaliacaoDaoIF {
                 .setParameter("vaga", id)
                 .getResultList();
         lista.forEach(a -> a.setVaga(jobs.buscaVaga(a.getCodVaga())));
+        lista.forEach(a -> a.getCandidato()
+                .setContent(
+                        candidatoDao.getCurriculo(
+                                a.getCandidato().getCurriculo())
+                )
+        );
         return lista;
     }
 

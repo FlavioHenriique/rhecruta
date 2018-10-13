@@ -8,6 +8,7 @@ package br.edu.ifpb.dacrhecruta.dao.interfaces;
 import br.edu.ifpb.dacrhecruta.dao.interfaces.generics.IFDaoGeneric;
 import br.edu.ifpb.dacrhecruta.domain.Candidato;
 import java.util.List;
+import org.primefaces.model.StreamedContent;
 
 /**
  *
@@ -17,4 +18,5 @@ public interface CandidatoDaoIF extends IFDaoGeneric<Candidato>{
     Candidato autenticar(String email, String senha);
     Candidato buscar(String email);
     public List<Candidato> buscaPorVagas(int id) ;
+    public StreamedContent getCurriculo(String curriculo) ;
 }
