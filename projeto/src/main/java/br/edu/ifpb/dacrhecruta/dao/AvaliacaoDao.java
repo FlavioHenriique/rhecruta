@@ -34,7 +34,9 @@ public class AvaliacaoDao implements AvaliacaoDaoIF {
     public Avaliacao buscar(Avaliacao obj) {
 
         Avaliacao a = em.find(Avaliacao.class,obj.getId());
-        a.setVaga(jobs.buscaVaga(a.getCodVaga()));
+        if(a!= null){
+            a.setVaga(jobs.buscaVaga(a.getCodVaga()));
+        }
         return a;
     }
 
