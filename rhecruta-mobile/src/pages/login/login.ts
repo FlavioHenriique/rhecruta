@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 import { TabsPage } from '../tabs/tabs';
 import { CandidatoProvider } from '../../providers/candidato/candidato';
 import Candidato from '../../models/candidato';
@@ -21,7 +22,7 @@ export class LoginPage {
   private candidato: Candidato;
   loginDados: any = {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private candidatoProvider: CandidatoProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage:Storage, private candidatoProvider: CandidatoProvider) {
     this.candidato = new Candidato();
   }
 
@@ -35,6 +36,8 @@ export class LoginPage {
         this.candidato.senha = cand['senha'];
         this.candidato.vagas = cand['vagas'];
 
+        this.storage.set('candidato', this.candidato);
+        
         this.navCtrl.setRoot(TabsPage);
       })
       .catch((error) => {
