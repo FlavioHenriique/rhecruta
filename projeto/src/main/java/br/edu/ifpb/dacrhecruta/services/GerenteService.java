@@ -74,9 +74,15 @@ public class GerenteService implements GerenteFacade, Serializable {
     }
 
     public void buscaPorCandidato(String email) {
+        candidatos = new ArrayList<>();
         candidatos.add(daoCandidato.buscar(email));
     }
 
+    public void buscaPorVaga(int id){
+        candidatos = new ArrayList<>();
+        candidatos = daoCandidato.buscaPorVagas(id);
+    }
+    
     public Gerente getGerente() {
         return gerente;
     }

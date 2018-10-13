@@ -37,26 +37,31 @@
                             ajax="false"/>
                         <br></br>
                         <br></br>
+                    </h:form>
+                    <h:form>
                         Filtrar por vaga
                         <br></br>
-                        <p:inputText />
+                        <p:inputText binding="#{vaga}"/>
                         <p:commandButton 
                             value="Buscar"
                             ajax="false"
-                            action="#{gerenteService.buscaPorCandidato(email.value)}"
+                            action="#{gerenteService.buscaPorVaga(vaga.value)}"
                             />
                     </h:form>
                     <br></br>
-
+                    <br></br>
                     <ui:repeat var="candidato" value="#{gerenteService.candidatos}">
                         <h:form>
+                            #{candidato.nome}<br></br>
                             <p:commandButton 
-                            value="Baixar currículo" 
-                            ajax="false" 
-                            onclick="PrimeFaces.monitorDownload(start, stop);" 
-                            icon="ui-icon-arrowthick-1-s">
-                            <p:fileDownload value="#{candidato.content}" />
-                        </p:commandButton>
+                                value="Baixar currículo" 
+                                ajax="false" 
+                                onclick="PrimeFaces.monitorDownload(start, stop);" 
+                                icon="ui-icon-arrowthick-1-s">
+                                <p:fileDownload value="#{candidato.content}" />
+                            </p:commandButton>
+                            <br></br>
+                            <br></br>
                         </h:form>
                     </ui:repeat>
 

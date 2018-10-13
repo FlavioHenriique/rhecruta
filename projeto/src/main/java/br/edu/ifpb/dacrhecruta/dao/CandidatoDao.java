@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.ifpb.dacrhecruta.dao;
 
 import br.edu.ifpb.dacrhecruta.dao.interfaces.CandidatoDaoIF;
@@ -12,12 +7,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Base64;
-
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.Stateless;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,9 +16,6 @@ import org.apache.commons.io.FileUtils;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
-/**
- * @author aguirresabino
- */
 @Stateless
 public class CandidatoDao implements CandidatoDaoIF {
 
@@ -52,6 +40,7 @@ public class CandidatoDao implements CandidatoDaoIF {
     @Override
     public Candidato buscar(String email) {
         Candidato c = em.find(Candidato.class, email);
+        System.out.println(c.toString());
         c.setContent(getCurriculo(c.getCurriculo()));
         return c;
     }
@@ -91,6 +80,19 @@ public class CandidatoDao implements CandidatoDaoIF {
         return null;
     }
 
+    @Override
+    public List<Candidato> buscaPorVagas(int id) {
+        List<Candidato> lista = em
+                .createQuery("SELECT c FROM Candidato c INNER JOIN"
+                        + " Avaliacao a WHERE a.codVaga = :id "
+                        + "AND c.email = a.candidato.email")
+                .setParameter("id", id)
+                .getResultList();
+
+        lista.forEach(c -> c.setContent(getCurriculo(c.getCurriculo())));
+        return lista;
+    }
+
     private StreamedContent getCurriculo(String curriculo) {
         File file = new File("curriculo.pdf");
         if (curriculo != null) {
@@ -106,9 +108,7 @@ public class CandidatoDao implements CandidatoDaoIF {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-
         }
-
         return null;
     }
 }
