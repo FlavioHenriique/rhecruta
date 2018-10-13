@@ -26,4 +26,7 @@ ion-icon {
     &[class*="custom-interview"] {
       mask-image: url(../assets/iconsTab/interview.svg);
     }
+    &[class*="custom-searchjob"] {
+      mask-image: url(../assets/iconsTab/searchjob.svg);
+    }
 }
