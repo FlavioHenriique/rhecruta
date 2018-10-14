@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Interesses
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngFor="let interesse of candidato.interesses">
+    <ion-item-sliding #item (ionSwipe)="delete(interesse)">
+      <ion-item>
+        <h2>{{interesse?.title}}</h2>
+        <h3>{{interesse?.workplace}}</h3>
+        <p>{{interesse?.description}}</p>
+      </ion-item>
+      <ion-item-options side="right">
+          <button ion-button expandable color="danger" (click)="delete(interesse)">Delete</button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

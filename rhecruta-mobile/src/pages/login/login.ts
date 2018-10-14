@@ -27,7 +27,8 @@ export class LoginPage {
   }
 
   public logar() {
-    this.candidatoProvider.login(this.loginDados)
+    //this.navCtrl.setRoot(TabsPage);
+    this.candidatoProvider.login({email:'aguirresabino187@gmail.com', senha:'1234'})
       .then((cand) => {
         this.candidato.email = cand['email'];
         this.candidato.curriculo = cand['curriculo'];
@@ -37,6 +38,9 @@ export class LoginPage {
         this.candidato.vagas = cand['vagas'];
 
         this.storage.set('candidato', this.candidato);
+        localStorage.setItem('interesses', JSON.stringify(this.candidato.interesses));
+
+        console.log(this.candidato);
         
         this.navCtrl.setRoot(TabsPage);
       })

@@ -7,7 +7,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+import { InteressePage } from '../pages/interesse/interesse';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -20,7 +20,7 @@ import { CandidatoProvider } from '../providers/candidato/candidato';
   declarations: [
     MyApp,
     AboutPage,
-    ContactPage,
+    InteressePage,
     LoginPage,
     HomePage,
     TabsPage
@@ -36,7 +36,7 @@ import { CandidatoProvider } from '../providers/candidato/candidato';
   entryComponents: [
     MyApp,
     AboutPage,
-    ContactPage,
+    InteressePage,
     LoginPage,
     HomePage,
     TabsPage

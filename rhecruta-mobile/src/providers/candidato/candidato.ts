@@ -37,4 +37,100 @@ export class CandidatoProvider {
     });
   }
 
+  save(candidato: any) {
+
+    let url: any = this.urlBase;
+
+    let headers = new Headers();
+    headers.append('content-type', 'application/json');
+    let options = new RequestOptions({ headers: headers });
+
+    return new Promise((resolve, reject) => {
+      this.http.post(url, candidato, options)
+        .subscribe(
+          (result: any) => {
+            resolve(result.json());
+          },
+          (error: any) => {
+            reject(error);
+          });
+    });
+  }
+
+  readAvaliacoes(candidato: any) {
+    let url = `${this.urlBase}/candidato/${candidato.email}`;
+
+    let headers = new Headers();
+    headers.append('content-type', 'application/json');
+    let options = new RequestOptions({ headers: headers });
+
+    return new Promise((resolve, reject) => {
+      this.http.get(url, options)
+        .subscribe(
+          (result: any) => {
+            resolve(result.json());
+          },
+          (error: any) => {
+            reject(error);
+          });
+    });
+  }
+
+  update(candidato: any) {
+
+    let url: any = this.urlBase;
+
+    let headers = new Headers();
+    headers.append('content-type', 'application/json');
+    let options = new RequestOptions({ headers: headers });
+
+    return new Promise((resolve, reject) => {
+      this.http.put(url, candidato, options)
+        .subscribe(
+          (result: any) => {
+            resolve(result.json());
+          },
+          (error: any) => {
+            reject(error);
+          });
+    });
+  }
+
+  removerInteresse(candidato: any, vaga: any) {
+
+    let url = `${this.urlBase}/${candidato.email}/removerInteresse`;
+
+    let headers = new Headers();
+    headers.append('content-type', 'application/json');
+    let options = new RequestOptions({ headers: headers });
+
+    return new Promise((resolve, reject) => {
+      this.http.put(url, vaga, options)
+        .subscribe(
+          (result: any) => {
+            resolve(result.json());
+          },
+          (error: any) => {
+            reject(error);
+          });
+    });
+  }
+
+  delete(email: any) {
+
+    let url = `${this.urlBase}/${email}`;
+
+    return new Promise((resolve, reject) => {
+      this.http.delete(url)
+        .subscribe(
+          (result: any) => {
+            console.log(result);
+            resolve(result.json());
+          },
+          (error: any) => {
+            reject(error);
+          });
+    });
+  }
+
 }
