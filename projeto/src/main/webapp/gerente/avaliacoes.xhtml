@@ -25,6 +25,20 @@
                     </p:layoutUnit>
                     <p:layoutUnit position="center">
                         <!-- Validar agendamentos -->
+                        <ui:repeat value="#{vagaService.vagas}" var="vaga">
+                            <p:panel header="#{vaga.title}">
+                                <h:panelGrid columns="1" cellpadding="10">
+                                    <b>Candidato: </b>
+                                    <br></br>
+                                    <br></br>
+                                    <b>Curriculo: </b>
+                                    <br></br>
+                                    <br></br>
+                                    <p:commandButton value="Aprovar" action="" ajax="false"/>
+                                    <p:commandButton value="Cancelar" action="" ajax="false"/>
+                                </h:panelGrid>
+                            </p:panel>
+                        </ui:repeat>
                     </p:layoutUnit>
                 </p:layout>
 
