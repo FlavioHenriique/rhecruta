@@ -2,6 +2,7 @@ package br.edu.ifpb.dacrhecruta.resource;
 
 import br.edu.ifpb.dacrhecruta.dao.interfaces.CandidatoDaoIF;
 import br.edu.ifpb.dacrhecruta.domain.Candidato;
+import br.edu.ifpb.dacrhecruta.domain.Vaga;
 import com.google.gson.Gson;
 import org.json.JSONObject;
 
@@ -76,6 +77,26 @@ public class CandidatoResource {
         Candidato c = gson.fromJson(json, Candidato.class);
         if(c != null){
             c = dao.atualizar(c);
+            return Response.ok().entity(c).build();
+        }else{
+            return Response.noContent().build();
+        }
+    }
+
+    @PUT
+    @Path("/{email}/removerInteresse")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response removerInteresse(String json, @PathParam("email") String email) {
+
+        Candidato c = new Candidato();
+        c.setEmail(email);
+        c = dao.buscar(c);
+
+        Vaga v = gson.fromJson(json, Vaga.class);
+        
+        if(c != null && v != null){
+            c = dao.removerInteresse(c, v);
             return Response.ok().entity(c).build();
         }else{
             return Response.noContent().build();

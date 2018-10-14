@@ -70,6 +70,12 @@ public class CandidatoDao implements CandidatoDaoIF {
     }
 
     @Override
+    public Candidato removerInteresse(Candidato obj, Vaga v) {
+        obj.removerInteresse(v);
+        return this.atualizar(obj);
+    }
+
+    @Override
     public Candidato autenticar(String email, String senha) {
         Candidato c = new Candidato();
         c.setEmail(email);

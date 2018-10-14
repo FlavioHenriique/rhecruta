@@ -25,4 +25,6 @@ public interface CandidatoDaoIF extends IFDaoGeneric<Candidato> {
 
     public StreamedContent getCurriculo(String curriculo);
 
+    Candidato removerInteresse(Candidato obj, Vaga v);
+
 }
