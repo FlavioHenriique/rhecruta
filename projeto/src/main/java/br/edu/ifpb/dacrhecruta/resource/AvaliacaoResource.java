@@ -2,13 +2,17 @@ package br.edu.ifpb.dacrhecruta.resource;
 
 import br.edu.ifpb.dacrhecruta.dao.interfaces.AvaliacaoDaoIF;
 import br.edu.ifpb.dacrhecruta.domain.Avaliacao;
+import br.edu.ifpb.dacrhecruta.domain.Candidato;
 import com.google.gson.Gson;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
+import java.util.List;
 
 @Path("avaliacao")
 @Stateless
@@ -37,6 +41,26 @@ public class AvaliacaoResource {
 
         if(a != null){
             return Response.ok().entity(a).build();
+        }
+        else {
+            return Response.noContent().build();
+        }
+    }
+
+    @GET
+    @Path("/candidato/{email}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response buscarAvaliacaoPorCandidato(@PathParam("email") String email) {
+
+        List<Avaliacao> avaliacoes = new ArrayList<>();
+        Candidato c = new Candidato();
+        c.setEmail(email);
+        avaliacoes = dao.buscar(c);
+
+        GenericEntity<List<Avaliacao>> avaliacoesEntity = new GenericEntity<List<Avaliacao>>(avaliacoes){};
+
+        if(avaliacoes != null){
+            return Response.ok().entity(avaliacoesEntity).build();
         }
         else {
             return Response.noContent().build();

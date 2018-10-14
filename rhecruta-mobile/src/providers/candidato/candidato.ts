@@ -12,6 +12,7 @@ import { Injectable } from '@angular/core';
 export class CandidatoProvider {
 
   private urlBase: String = 'http://localhost:8081/rhecruta/api/candidato';
+  private urlBase1: String = 'http://localhost:8081/rhecruta/api/avaliacao';
 
   constructor(public http: Http) {
     console.log('Hello CandidatoProvider Provider');
@@ -58,7 +59,7 @@ export class CandidatoProvider {
   }
 
   readAvaliacoes(candidato: any) {
-    let url = `${this.urlBase}/candidato/${candidato.email}`;
+    let url = `${this.urlBase1}/candidato/${candidato.email}`;
 
     let headers = new Headers();
     headers.append('content-type', 'application/json');
@@ -125,6 +126,24 @@ export class CandidatoProvider {
         .subscribe(
           (result: any) => {
             console.log(result);
+            resolve(result.json());
+          },
+          (error: any) => {
+            reject(error);
+          });
+    });
+  }
+
+  deleteAvaliacao(id: any) {
+
+    let url = `${this.urlBase1}/${id}`;
+
+    console.log(url, 'URL UTILIZADA');
+
+    return new Promise((resolve, reject) => {
+      this.http.delete(url)
+        .subscribe(
+          (result: any) => {
             resolve(result.json());
           },
           (error: any) => {

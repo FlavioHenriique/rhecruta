@@ -39,8 +39,6 @@ export class LoginPage {
 
         this.storage.set('candidato', this.candidato);
         localStorage.setItem('interesses', JSON.stringify(this.candidato.interesses));
-
-        console.log(this.candidato);
         
         this.navCtrl.setRoot(TabsPage);
       })
