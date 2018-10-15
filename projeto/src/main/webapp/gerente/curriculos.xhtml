@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Visualização de currículos</title>
+    </h:head>
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Gerente - Currículos</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+            <p:layout fullPage="true">
+                <ui:include src="/WEB-INF/topo_gerente.xhtml"/>
+                <ui:include src="/WEB-INF/rodape.xhtml"/>
+
+                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                    <ui:include src="/WEB-INF/menu_gerente.xhtml"/>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    <h:form>
+                        <h4>Visualizar currículos</h4>
+                        Filtrar por candidato
+                        <br></br>
+                        <p:inputText binding="#{email}"/>
+                        <p:commandButton 
+                            value="Buscar"
+                            action="#{gerenteService.buscaPorCandidato(email.value)}"
+                            ajax="false"/>
+                        <br></br>
+                        <br></br>
+                    </h:form>
+                    <h:form>
+                        Filtrar por vaga
+                        <br></br>
+                        <p:inputText binding="#{vaga}"/>
+                        <p:commandButton 
+                            value="Buscar"
+                            ajax="false"
+                            action="#{gerenteService.buscaPorVaga(vaga.value)}"
+                            />
+                    </h:form>
+                    <br></br>
+                    <br></br>
+                    <ui:repeat var="avaliacao" value="#{gerenteService.avaliacoes}">
+                        <h:form>
+                            #{avaliacao.candidato.nome}<br></br>
+                            <b>Nota da entrevista:</b> #{avaliacao.nota}
+                            <br></br>
+                            <p:commandButton 
+                                value="Baixar currículo" 
+                                ajax="false" 
+                                onclick="PrimeFaces.monitorDownload(start, stop);" 
+                                icon="ui-icon-arrowthick-1-s">
+                                <p:fileDownload value="#{avaliacao.candidato.content}" />
+                            </p:commandButton>
+                        </h:form>
+                        <br></br>
+                        <p:commandButton 
+                            value="Determinar resultado"
+                            onclick="PF('modal').show()"
+                            />
+                        <p:dialog 
+                            header="Resultado da análise de currículos"
+                            widgetVar="modal" 
+                            modal="true" 
+                            appendTo="@(body)"
+                            height="100">
+                            <h:form>
+                                <p:selectOneMenu binding="#{classificacao}">
+                                    <f:selectItem 
+                                        itemLabel="Classificado"
+                                        itemValue="true"
+                                        />
+                                    <f:selectItem 
+                                        itemLabel="Desclassificado"
+                                        itemValue="false"/>
+                                </p:selectOneMenu>
+                                <br></br>
+                                <br></br>
+                                <p:commandButton 
+                                    value="Resultado" 
+                                    action="#{gerenteService.resultado(avaliacao,classificacao.value)}"
+                                    ajax="false"/>
+                            </h:form>
+
+                        </p:dialog>
+                        <br></br>
+                        <br></br>
+
+                    </ui:repeat>
+                </p:layoutUnit>
+            </p:layout>
+        </h:body>
+    </f:view>
+</html>
+

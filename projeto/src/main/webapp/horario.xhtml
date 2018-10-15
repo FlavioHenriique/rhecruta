@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Rhecruta</title>
+            </f:facet>
+        </h:head>
+        <h:body>
+            <p:layout fullPage="true">
+                <ui:include src="WEB-INF/topo.xhtml"/>
+                <ui:include src="WEB-INF/rodape.xhtml"/>
+
+                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                    <ui:include src="WEB-INF/menu.xhtml"/>
+                </p:layoutUnit>
+                <!-- Fazer agendamentos -->
+                <p:layoutUnit position="center">
+                    <h3>Agendar</h3>
+                    <h:form>
+                        <h:messages id="errorMessages" style="color:red;margin:8px;" />
+                        <p:outputLabel for="vagas" value="Vaga:" />
+                        <br></br>
+
+                        <p:selectOneMenu id="vagas" value="#{avaliacaoService.avaliacao.vaga}" 
+                                         style="width:125px"
+                                         converter="convert.vaga">
+                            <f:selectItems 
+                                itemLabel="#{vaga.title}" 
+                                itemValue="#{vaga}" 
+                                value="#{candidatoService.candidato.interesses}"
+                                var="vaga"/>    
+                        </p:selectOneMenu>
+                        <br></br>
+                        <br></br>
+                        Local<br></br>
+                        <p:inputText value="#{avaliacaoService.avaliacao.local}" required="true"/>
+                        <br></br>
+                        <br></br>
+                        Horário<br></br>
+                        <p:inputText value="#{avaliacaoService.avaliacao.horario}" required="true"/>
+                        <br></br>
+                        <br></br>
+                        <p:commandButton 
+                            action="#{avaliacaoService.salvar()}" 
+                            value="Agendar" 
+                            ajax="false"/>
+                    </h:form>
+                    <h:form>
+                        <!-- Ver todos e Cancelar Agendamentos -->
+                        <ui:repeat var="horario" value="#{avaliacaoService.minhasAvaliacoes}">
+                            <p:panel style="margin-bottom:20px" header="#{horario.vaga.title}">
+                                <h:panelGrid columns="2" cellpadding="10">
+                                    <br></br>
+                                    <br></br>
+                                    <b>Local: </b>#{horario.local}
+                                    <br></br>
+                                    <br></br>
+                                    <b>Horário: </b>#{horario.horario}
+                                    <br></br>
+                                    <p:commandButton action="#{avaliacaoService.deletar(horario)}" value="Cancelar" ajax="false"/>
+                                </h:panelGrid>
+                            </p:panel>
+                        </ui:repeat>
+                    </h:form>
+
+                </p:layoutUnit>
+            </p:layout>
+        </h:body>
+    </f:view>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Atualizar perfil </title>
+            </f:facet>
+        </h:head>
+        <h:body>
+            <p:layout fullPage="true">
+                <ui:include src="WEB-INF/topo.xhtml"/>
+                <ui:include src="WEB-INF/rodape.xhtml"/>
+                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                    <ui:include src="WEB-INF/menu.xhtml"/>
+
+                </p:layoutUnit>
+                <p:layoutUnit position="center">
+                    <h3>Atualizar perfil de candidato</h3>
+                    <h:form>
+                        Nome<br></br>
+                        <p:inputText value="#{candidatoService.candidato.nome}" required="true"/>
+                        <br></br>
+                        <br></br>
+                        Email<br></br>
+                        <p:inputText value="#{candidatoService.candidato.email}" required="true"/>
+                        <br></br>
+                        <br></br>
+                        Senha<br></br>
+                        <p:password value="#{candidatoService.candidato.senha}" required="true"/>
+                        <br></br>
+                        <br></br>
+                        <p:commandButton action="#{candidatoService.atualizar()}" value="Atualizar" ajax="false"/>
+                    </h:form>
+                    <h:form>
+                        <p:commandButton
+                            ajax="false"
+                            value="Remover esta conta"
+                            action="#{candidatoService.deletar()}"
+                            />
+                    </h:form>
+                    <!-- Enviar e Remover currículo -->
+                    <h:form enctype="multipart/form-data">
+                        <br></br>
+                        Adicionar currículo
+                        <br></br>
+                        <p:fileUpload fileUploadListener="#{candidatoService.doUpload}" 
+                                      label="Buscar..." auto="true" immediate="true"
+                                      allowTypes="/(\.|\/)(pdf)$/"/>
+                        <br></br>
+                        <br></br>
+                        <p:commandButton 
+                            value="Remover currículo" 
+                            action="#{candidatoService.removerCurriculo()}" 
+                            ajax="false"/>
+                    </h:form>
+                </p:layoutUnit>
+            </p:layout>
+        </h:body>
+    </f:view>
+</html>

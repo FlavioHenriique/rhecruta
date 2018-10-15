@@ -28,7 +28,7 @@ public class EnviaEmail {
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.port", "465");
 
-        Session session = Session.getDefaultInstance(props,
+        Session session = Session.getInstance(props,
                 new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {

@@ -1,10 +1,12 @@
 package br.edu.ifpb.dacrhecruta.domain;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.primefaces.model.StreamedContent;
 
 @Entity
 public class Candidato implements Serializable {
@@ -13,7 +15,10 @@ public class Candidato implements Serializable {
     private String email;
     private String senha;
     private String curriculo;
+    @Transient
+    private StreamedContent content;
     private String nome;
+    
     @ElementCollection
     private List<Integer> vagas;
     @Transient
@@ -29,7 +34,7 @@ public class Candidato implements Serializable {
         vagas = new ArrayList<>();
     }
 
-    public Candidato(){
+    public Candidato() {
         interesses = new ArrayList<>();
         vagas = new ArrayList<>();
     }
@@ -74,6 +79,14 @@ public class Candidato implements Serializable {
         this.nome = nome;
     }
 
+    public void removerInteresse(Vaga v) {
+        for (int k = 0; k < vagas.size(); k++) {
+            if (vagas.get(k) == v.getId()) {
+                vagas.remove(k);
+            }
+        }
+    }
+
     public void adicionarInteresse(Vaga v) {
         interesses.add(v);
         vagas.add(v.getId());
@@ -87,14 +100,24 @@ public class Candidato implements Serializable {
         this.interesses = interesses;
     }
 
+    public StreamedContent getContent() {
+        return content;
+    }
+
+    public void setContent(StreamedContent content) {
+        this.content = content;
+    }
+
     @Override
     public String toString() {
-        return "Candidato{" +
-                "email='" + email + '\'' +
-                ", senha='" + senha + '\'' +
-                ", curriculo='" + curriculo + '\'' +
-                ", nome='" + nome + '\'' +
-                ", interesses=" + interesses +
-                '}';
+        return "Candidato{"
+                + "email=" + email
+                + ", senha=" + senha
+                + ", curriculo=" + curriculo
+                + ", nome=" + nome
+                + ", vagas=" + vagas
+                + ", interesses="
+                + interesses + '}';
     }
+
 }

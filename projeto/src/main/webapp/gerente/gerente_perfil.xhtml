@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Atualizar perfil </title>
+            </f:facet>
+        </h:head>
+        <h:body>
+            <p:layout fullPage="true">
+                <ui:include src="/WEB-INF/topo_gerente.xhtml"/>
+                <ui:include src="/WEB-INF/rodape.xhtml"/>
+
+                <!-- Atualizar perfil do gerente -->
+                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                    <ui:include src="/WEB-INF/menu_gerente.xhtml"/>
+                </p:layoutUnit>
+                <p:layoutUnit position="center">
+                    <h3>Atualizar perfil de gerente</h3>
+                    <h:form>
+                        Nome<br></br>
+                        <p:inputText value="#{gerenteService.gerente.nome}" required="true"/>
+                        <br></br>
+                        <br></br>
+                        <p:commandButton action="#{gerenteService.atualizar()}" value="Atualizar" ajax="false"/>
+                    </h:form>
+                    <br></br>
+                    <h:form>
+                        <p:commandButton
+                            ajax="false"
+                            value="Remover esta conta"
+                            action="#{gerenteService.deletar()}"
+                            />
+                    </h:form>
+                </p:layoutUnit>
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+
+</html>
+

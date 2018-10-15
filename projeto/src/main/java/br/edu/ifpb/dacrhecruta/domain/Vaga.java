@@ -1,6 +1,7 @@
 package br.edu.ifpb.dacrhecruta.domain;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Embeddable;
 import javax.persistence.Transient;
 
@@ -81,6 +82,53 @@ public class Vaga implements Serializable {
         this.requirements = requirements;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 37 * hash + this.id;
+        hash = 37 * hash + Objects.hashCode(this.workplace);
+        hash = 37 * hash + Objects.hashCode(this.company_name);
+        hash = 37 * hash + Objects.hashCode(this.description);
+        hash = 37 * hash + Objects.hashCode(this.title);
+        hash = 37 * hash + Objects.hashCode(this.requirements);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Vaga other = (Vaga) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.workplace, other.workplace)) {
+            return false;
+        }
+        if (!Objects.equals(this.company_name, other.company_name)) {
+            return false;
+        }
+        if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
+        if (!Objects.equals(this.title, other.title)) {
+            return false;
+        }
+        if (!Objects.equals(this.requirements, other.requirements)) {
+            return false;
+        }
+        return true;
+    }
+
+    
+    
     @Override
     public String toString() {
         return "Vaga{"

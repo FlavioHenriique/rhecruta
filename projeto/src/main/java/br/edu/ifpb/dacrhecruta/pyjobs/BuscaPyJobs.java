@@ -44,31 +44,30 @@ public class BuscaPyJobs {
         return new ArrayList<>();
     }
 
-    public String buscaCidade(String cidade) {
-        return gson.toJson(
-                buscaVagas()
-                        .stream()
-                        .filter(v -> v.getWorkplace().toLowerCase().contains(cidade))
-                        .collect(Collectors.toList())
-        );
+    public List<Vaga> buscaCidade(String cidade) {
+        return buscaVagas()
+                .stream()
+                .filter(v -> v.getWorkplace().toLowerCase().contains(cidade))
+                .collect(Collectors.toList());
+
     }
 
-    public String buscaDescricao(String descricao) {
-        return gson.toJson(
-                buscaVagas()
-                        .stream()
-                        .filter(v -> v.getDescription().toLowerCase().contains(descricao))
-                        .collect(Collectors.toList())
-        );
+    public List<Vaga> buscaDescricao(String descricao) {
+
+        return buscaVagas()
+                .stream()
+                .filter(v -> v.getDescription().toLowerCase().contains(descricao))
+                .collect(Collectors.toList());
+
     }
 
-    public String buscaEmpresa(String empresa) {
-        return gson.toJson(
-                buscaVagas()
-                        .stream()
-                        .filter(v -> v.getCompany_name().toLowerCase().contains(empresa))
-                        .collect(Collectors.toList())
-        );
+    public List<Vaga> buscaEmpresa(String empresa) {
+
+        return buscaVagas()
+                .stream()
+                .filter(v -> v.getCompany_name().toLowerCase().contains(empresa))
+                .collect(Collectors.toList());
+
     }
 
     public List<Vaga> interessesCandidato(List<Integer> vagas) {

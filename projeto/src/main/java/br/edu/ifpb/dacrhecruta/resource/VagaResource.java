@@ -25,7 +25,7 @@ public class VagaResource {
     public Response buscaCidade(@PathParam("cidade") String cidade){
         return Response
                 .ok()
-                .entity(busca.buscaCidade(cidade.toLowerCase()))
+                .entity(gson.toJson(busca.buscaCidade(cidade.toLowerCase())))
                 .build();
     }
 
@@ -34,7 +34,7 @@ public class VagaResource {
     public Response buscaDescricao(@PathParam("descricao") String descricao){
         return Response
                 .ok()
-                .entity(busca.buscaDescricao(descricao.toLowerCase()))
+                .entity(gson.toJson(busca.buscaDescricao(descricao.toLowerCase())))
                 .build();
     }
 
@@ -43,7 +43,7 @@ public class VagaResource {
     public Response buscaEmpresa(@PathParam("empresa") String empresa){
         return Response
                 .ok()
-                .entity(busca.buscaEmpresa(empresa.toLowerCase()))
+                .entity(gson.toJson(busca.buscaEmpresa(empresa.toLowerCase())))
                 .build();
     }
 }

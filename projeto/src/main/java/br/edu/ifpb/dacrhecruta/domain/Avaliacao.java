@@ -2,20 +2,23 @@ package br.edu.ifpb.dacrhecruta.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
 @Entity
 public class Avaliacao implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private  int id;
+    private int id;
     private float nota;
     private String horario;
     private String local;
     private boolean aprovacao;
-    @ManyToOne
+    private boolean classificacao;
+    @ManyToOne(cascade = CascadeType.ALL)
     private Gerente gerente;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Avaliador avaliador;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Candidato candidato;
     private int codVaga;
     @Transient
@@ -25,7 +28,7 @@ public class Avaliacao implements Serializable {
     }
 
     public Avaliacao(float nota, String horario, String local, boolean aprovacao,
-                     Gerente gerente, Avaliador avaliador, Candidato candidato, int codVaga) {
+            Gerente gerente, Avaliador avaliador, Candidato candidato, int codVaga) {
         this.nota = nota;
         this.horario = horario;
         this.local = local;
@@ -58,6 +61,7 @@ public class Avaliacao implements Serializable {
 
     public void setNota(float nota) {
         this.nota = nota;
+        this.aprovacao = (nota >= 7);
     }
 
     public String getHorario() {
@@ -78,6 +82,14 @@ public class Avaliacao implements Serializable {
 
     public boolean isAprovacao() {
         return aprovacao;
+    }
+
+    public boolean isClassificacao() {
+        return classificacao;
+    }
+
+    public void setClassificacao(boolean classificacao) {
+        this.classificacao = classificacao;
     }
 
     public void setAprovacao(boolean aprovacao) {

@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Rhecruta</title>
+            </f:facet>
+        </h:head>
+        <h:body>
+            <p:layout fullPage="true">
+                <ui:include src="WEB-INF/topo.xhtml"/>
+                <ui:include src="WEB-INF/rodape.xhtml"/>
+                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                    <ui:include src="WEB-INF/menu.xhtml"/>
+                </p:layoutUnit>
+                
+                <!-- Buscar Vagas usando filtro -->
+                <p:layoutUnit position="center">
+                    <h4>Busque vagas aqui!</h4>
+                    <h:form>
+                        Filtrar por cidade: 
+                        <p:inputText value="#{vagaService.cidade}" />
+                        <p:commandButton value="Buscar" action="#{vagaService.buscaCidade()}" ajax="false"/>
+                        <br></br>
+                        <br></br>
+                    </h:form>
+                    <h:form>
+                        Filtrar por empresa: 
+                        <p:inputText value="#{vagaService.empresa}" />
+                        <p:commandButton value="Buscar" action="#{vagaService.buscaEmpresa()}" ajax="false"/>
+                        <br></br>
+                        <br></br>
+                    </h:form>
+                    <h:form>
+                        Filtrar por descrição: 
+                        <p:inputText value="#{vagaService.descricao}" />
+                        <p:commandButton value="Buscar" action="#{vagaService.buscaDescricao()}" ajax="false"/>
+                        <br></br>
+                        <br></br>
+                    </h:form>
+                    <h:form>
+                        <h3>Ao se candidatar para uma vaga, elas irao estar disponiveis na aba Interesses</h3>
+                        <ui:repeat value="#{vagaService.vagas}" var="vaga">
+                            <p:panel header="#{vaga.title}">
+                                <h:panelGrid columns="1" cellpadding="10">
+                                    <b>Descrição: </b>#{vaga.description}
+                                    <br></br>
+                                    <br></br>
+                                    <b>Empresa: </b>#{vaga.company_name}
+                                    <br></br>
+                                    <br></br>
+                                    <b>Local de trabalho: </b>#{vaga.workplace}
+                                    <br></br>
+                                    <br></br>
+                                    <b>Requisitos: </b>#{vaga.requirements}
+                                    <br></br>
+                                    <br></br>    
+                                    <p:commandButton value="Candidatar-se" action="#{candidatoService.adicionarInteresse(vaga)}" ajax="false"/>
+                                </h:panelGrid>
+                            </p:panel>
+                        </ui:repeat>
+                    </h:form>
+
+                </p:layoutUnit>
+            </p:layout>
+        </h:body>
+    </f:view>
+</html>

@@ -1,0 +1,14 @@
+<ion-content>
+  <img id="logo" src="../assets/imgs/logo.png" />
+  <ion-grid padding>
+    <ion-row>
+      <ion-col col-12 col-md-12 col-lg-12 col-xl-12>
+        <form (ngSubmit)="logar()">
+          <ion-input class="inputLogin" type="text" [(ngModel)]="loginDados.email" name="email" placeholder="Email"></ion-input>
+          <ion-input class="inputLogin" type="password" [(ngModel)]="loginDados.senha" name="senha" placeholder="Senha"></ion-input>
+          <button class="btnEntrar" color="light" ion-button full type="submit">Entrar</button>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

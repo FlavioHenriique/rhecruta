@@ -1,0 +1,21 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+    <h:form>
+        <p:menu>
+            <p:submenu label="Menu">
+                <p:menuitem value="Home" url="home.xhtml" />
+                <p:menuitem value="Perfil" url="perfil.xhtml" />
+                <p:menuitem value="Buscar vagas" url="vagas.xhtml" />
+                <p:menuitem value="Horários" url="horario.xhtml" />
+                <p:menuitem value="Interesses" url="interesses.xhtml" />
+                <p:menuitem value="Recrutamento" url="recrutamento.xhtml" />
+                <p:menuitem value="Newsweek" url="home.xhtml" />
+                <p:menuitem value="Sair" action="#{candidatoService.sair()}"/>
+            </p:submenu>
+        </p:menu>
+    </h:form>    
+</ui:composition>

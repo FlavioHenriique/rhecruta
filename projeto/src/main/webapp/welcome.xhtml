@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Rhecruta</title>
+            </f:facet>
+        </h:head>
+
+        <!-- Página de acesso ao sistema / Login de Candidato e Gerente -->
+        <h:body>
+            <p:layout fullPage="true">
+                <p:layoutUnit position="north" size="230" resizable="true" closable="true" collapsible="true">
+                    Login Candidato
+                    <h:form>
+                        <p:inputText value="#{candidatoService.candidato.email}" required="true"/>
+                        <p:password value="#{candidatoService.candidato.senha}" required="true"/>
+                        <p:commandButton action="${candidatoService.autenticar()}" value="Acessar" ajax="false"/>
+                    </h:form>
+                    <h:form>
+                        &nbsp;<br></br>
+                        Login Gerente<br></br>
+                        <p:inputText required="true" value="#{gerenteService.gerente.codigo}"/>
+                        <p:commandButton value="Acessar" action="#{gerenteService.autenticar()}" ajax="false"/>
+                    </h:form>
+                    <h:form>
+                        &nbsp;<br></br>
+                        Login Avaliador<br></br>
+                        <p:inputText required="true" value="#{avaliadorService.avaliador.codigo}"/>
+                        <p:commandButton value="Acessar" action="#{avaliadorService.autenticar()}" ajax="false"/>
+                    </h:form>
+                </p:layoutUnit>
+                <ui:include src="WEB-INF/rodape.xhtml"/>
+                <p:layoutUnit position="center">
+                    <table style="width: 100%">
+                        <tr>
+                            <td>
+                                <h3>Cadastro de candidato</h3>
+                        <h:form>
+                            Nome<br></br>
+                            <p:inputText value="#{candidatoService.candidato.nome}" required="true"/>
+                            <br></br>
+                            <br></br>
+                            Email<br></br>
+                            <p:inputText value="#{candidatoService.candidato.email}" required="true"/>
+                            <br></br>
+                            <br></br>
+                            Senha<br></br>
+                            <p:password value="#{candidatoService.candidato.senha}" required="true"/>
+                            <br></br>
+                            <br></br>
+                            <p:commandButton action="#{candidatoService.salvar()}" value="Cadastrar" ajax="false"/>
+                        </h:form>
+                        <br></br>
+                        </td>
+                        <td>
+                            <h3>Cadastro de gerente</h3>
+                        <h:form>
+                            Nome<br></br>
+                            <p:inputText value="#{gerenteService.gerente.nome}" required="true"/>
+                            <br></br>
+                            <br></br>
+                            Código<br></br>
+                            <p:inputText value="#{gerenteService.gerente.codigo}" required="true"/>
+                            <br></br>
+                            <br></br>
+                            <p:commandButton action="#{gerenteService.salvar()}" value="Cadastrar" ajax="false"/>
+                        </h:form>
+                        </td>
+                        <td>
+                            <h3>Cadastro de avaliador</h3>
+                        <h:form>
+                            Nome<br></br>
+                            <p:inputText value="#{avaliadorService.avaliador.nome}" required="true"/>
+                            <br></br>
+                            <br></br>
+                            Código<br></br>
+                            <p:inputText value="#{avaliadorService.avaliador.codigo}" required="true"/>
+                            <br></br>
+                            <br></br>
+                            <p:commandButton action="#{avaliadorService.salvar()}" value="Cadastrar" ajax="false"/>
+                        </h:form>
+                        </td>
+                        </tr>
+                    </table>
+
+                    <h:form>
+                        <h4>Receber Newsweek</h4>
+                        Digite seu email:
+                        <br></br>
+                        <p:inputText value="#{newsweekService.newsweek.email}"/>
+                        <p:commandButton 
+                            value="Cadastrar" 
+                            action="#{newsweekService.receber()}"
+                            ajax="false"/>
+                    </h:form>
+                </p:layoutUnit>
+
+            </p:layout>
+        </h:body>
+    </f:view>
+</html>
+

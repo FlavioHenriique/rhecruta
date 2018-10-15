@@ -22,6 +22,7 @@ CREATE TABLE AVALIACAO(
 	horario VARCHAR(5),
 	local VARCHAR,
 	aprovacao boolean,
+	classificacao boolean,
 	gerente_codigo int,
 	avaliador_codigo int,
 	candidato_email VARCHAR,
@@ -31,24 +32,18 @@ CREATE TABLE AVALIACAO(
 	FOREIGN KEY (candidato_email) REFERENCES Candidato(email)
 );
 
-INSERT INTO CANDIDATO (nome,email,senha,curriculo) 
-VALUES ('Flavio','flavio@gmail.com','1234','curriculo1');
+INSERT INTO CANDIDATO (nome,email,senha) 
+VALUES ('Flavio','flavio@gmail.com','flavio');
 
-INSERT INTO CANDIDATO (nome,email,senha,curriculo) 
-VALUES ('Julierme','julierme@gmail.com','1234','curriculo2');
+INSERT INTO CANDIDATO (nome,email,senha) 
+VALUES ('Julierme','julierme@gmail.com','1234');
 
-INSERT INTO CANDIDATO (nome,email,senha,curriculo) 
-VALUES ('Aguirre','aguirre@gmail.com','1234','curriculo3');
-
+INSERT INTO CANDIDATO (nome,email,senha) 
+VALUES ('Aguirre','aguirre@gmail.com','1234');
 
 INSERT INTO GERENTE(nome,codigo)
-VALUES ('Gerente1','1111');
+VALUES ('job','1111');
 
 INSERT INTO AVALIADOR(nome,codigo)
-VALUES ('Avaliador1','1111');
-
-INSERT INTO AVALIACAO(nota,horario,local,aprovacao,gerente_codigo,
-avaliador_codigo,candidato_email,codvaga)
- VALUES (9,'10:30','sousa',false,'1111','1111','flavio@gmail.com',1);
-
+VALUES ('ari','1111');
 

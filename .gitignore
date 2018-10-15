@@ -4,5 +4,8 @@
 projeto/target/
 projeto/autodeploy/
 projeto/.idea/
+<<<<<<< HEAD
+=======
 postgres-data/
 docker-dev/postgres-data-dev/
+>>>>>>> develop

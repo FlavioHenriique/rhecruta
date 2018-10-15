@@ -1,5 +1,4 @@
-docker kill $(docker container ls -a -q)
-docker rmi -f $(docker image ls rhecruta/* -q)
+docker-compose down
 
-sudo docker rm -f $(sudo docker ps -aq --filter name=bdrhecruta)
-#sudo docker rm -f $(sudo docker ps -aq --filter name=apirhecruta)
+docker image rm projeto-dac/rhecruta-app -f
+docker image rm projeto-dac/rhecruta-banco -f
